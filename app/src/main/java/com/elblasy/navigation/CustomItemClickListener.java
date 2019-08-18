@@ -1,0 +1,8 @@
+package com.elblasy.navigation;
+
+import android.view.View;
+
+public interface CustomItemClickListener  {
+
+     void onItemClick(View v, int position);
+}

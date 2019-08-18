@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Navigation</string>
+    <string name="verify">تحقق</string>
+    <string name="user_name">الاسم</string>
+    <string name="lets_start">هيا بنا لنبدأ</string>
+    <string name="phone_number">رقم الموبيل</string>
+    <string name="verify_phone">انتظر حتى يتم ارسال الكود الى الرقم</string>
+    <string name="title_activity_home">الرئيسية</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">اندرويد</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">هيدر</string>
+    <string name="action_settings">الاعددات</string>
+    <string name="action_sign_out">تسجيل الخروج</string>
+    <string name="any_place">مش لاقى المكان ؟</string>
+    <string name="move_any_thing">أنقل أي حاجة لأي مكان</string>
+
+
+    <string name="menu_home">الرئيسية</string>
+    <string name="menu_gallery">الصور</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">الادوات</string>
+    <string name="menu_share">المشاركة</string>
+    <string name="menu_send">ارسال</string>
+
+    <string name="restaurant">مطاعم</string>
+    <string name="groceries">سوبر ماركت</string>
+    <string name="medicine">صيدليات</string>
+    <string name="gifts">هدايا</string>
+    <string name="sweets">حلوى</string>
+    <string name="cafe">قهوة</string>
+    <string name="bakery">مخبوزات</string>
+    <string name="casino">كازينو</string>
+
+</resources>

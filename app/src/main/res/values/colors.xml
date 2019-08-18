@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F4F2EC</color>
+    <color name="colorPrimaryDark">#EAE8DC</color>
+    <color name="colorAccent">#BE2623</color>
+    <color name="colorAccent2">#0E3746</color>
+
+    <!-- dots inactive colors -->
+    <color name="dot_inactive">#4c4c4c</color>
+
+    <!-- dots active colors -->
+    <color name="dot_active">#e5e5e5</color>
+    <color name="material_blueA200">#045FB4</color>
+
+</resources>
