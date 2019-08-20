@@ -35,4 +35,9 @@
     <string name="bakery">مخبوزات</string>
     <string name="casino">كازينو</string>
 
+
+    <!-- order edit text -->
+    <string name="order_detail">اكتب طلبك…</string>
+    <string name="order_number">١</string>
+
 </resources>

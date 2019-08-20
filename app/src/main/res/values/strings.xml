@@ -33,5 +33,10 @@
     <string name="bakery">Bakery</string>
     <string name="casino">Casino</string>
 
+    <!-- order edit text -->
+    <string name="order_detail">write what you want…</string>
+    <string name="order_number">1</string>
+
+
 
 </resources>

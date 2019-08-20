@@ -25,7 +25,7 @@ public class User {
         this.username = username;
     }
 
-    public String getMobile() {
+    public  String getMobile() {
         return mobile;
     }
 

@@ -20,68 +20,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <LinearLayout
-        android:id="@+id/layout"
+    <ListView
+        android:id="@+id/list_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/custom_order"
-        android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/text"
-        tools:layout_editor_absoluteX="8dp">
+        android:background="@drawable/custom_order"
+        android:layout_margin="12dp"
 
-        <LinearLayout
-            android:id="@+id/layout1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        >
 
-            <EditText
-                android:id="@+id/editText2"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="8dp"
-                android:layout_weight=".15"
-                android:background="@android:color/transparent"
-                android:inputType="number"
-                android:maxLength="1"
-                android:maxLines="1"
-                android:text="1"
-                android:textColor="#fff"
-                android:textColorHint="@android:color/darker_gray"
-                android:textSize="24dp" />
+    </ListView>
 
-            <EditText
-                android:id="@+id/editText1"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="2"
-                android:background="@android:color/transparent"
-                android:hint="write what you want..."
-                android:maxLines="1"
-                android:textColor="#fff"
-                android:textColorHint="@android:color/darker_gray"
-                android:textSize="24dp" />
-
-
-        </LinearLayout>
-    </LinearLayout>
-
-        <TextView
-            android:id="@+id/text_cobon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginStart="8dp"
-            android:text="add Cobon"
-            android:textColor="@color/colorAccent2"
-            android:textSize="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout" />
+    <TextView
+        android:id="@+id/text_cobon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:text="add Cobon"
+        android:textColor="@color/colorAccent2"
+        android:textSize="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list_item" />
 
     <Button
         android:id="@+id/place_order"

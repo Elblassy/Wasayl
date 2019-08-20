@@ -3,7 +3,6 @@ package com.elblasy.navigation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +36,7 @@ public class VerifyPhoneNumber extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mdatabase = FirebaseDatabase.getInstance().getReference("users");
-        codeInputView = (Pinview) findViewById(R.id.code);
+        codeInputView = findViewById(R.id.code);
 
         Intent intent = getIntent();
         mobile = intent.getStringExtra("mobile");
@@ -50,19 +49,16 @@ public class VerifyPhoneNumber extends AppCompatActivity {
 
         sendVerificationCode(mobile);
 
-        findViewById(R.id.sign).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String code = codeInputView.getValue();
+        findViewById(R.id.sign).setOnClickListener(v -> {
+            String code = codeInputView.getValue();
 
-                if (code.isEmpty() || code.length() < 6) {
-                    Toast.makeText(VerifyPhoneNumber.this, "Enter valid code", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                //verifying the code entered manually
-                verifyVerificationCode(code);
-
+            if (code.isEmpty() || code.length() < 6) {
+                Toast.makeText(VerifyPhoneNumber.this, "Enter valid code", Toast.LENGTH_LONG).show();
+                return;
             }
+            //verifying the code entered manually
+            verifyVerificationCode(code);
+
         });
     }
 
