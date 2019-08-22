@@ -38,21 +38,26 @@ public class Order extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     ListView listView;
     EditAdapter editAdapter;
+    String address;
 
     final private String FCM_API = "https://fcm.googleapis.com/fcm/send";
-    final private String serverKey = "key=" + "YOUR_KEY";
+    final private String serverKey = "key=" + "AAAAMgUYmxc:APA91bHLBfsU1MbJwOCcpW-6g5cg11cQZ901bbPVY83Dh2Td_Q79B7V-YDchmdg4qC9S92TRLPjRnxArXCySyZ1Pw4QNQlZHI4q_iNVeHlMcGltltCrMjEZFqBpblE1J_ECPkDiS0AiP";
     final private String contentType = "application/json";
     final String TAG = "NOTIFICATION TAG";
 
     String NOTIFICATION_TITLE;
     String NOTIFICATION_MESSAGE;
     String TOPIC;
+    String fcmToken;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+
+        Intent intent = getIntent();
+        address = intent.getStringExtra("Address");
 
         mdatabase = FirebaseDatabase.getInstance().getReference("orders");
         firebaseAuth = FirebaseAuth.getInstance();
@@ -70,7 +75,7 @@ public class Order extends AppCompatActivity {
 
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(Order.this, instanceIdResult -> {
 
-            String fcmToken = instanceIdResult.getToken();
+            fcmToken = instanceIdResult.getToken();
             Log.e("token", fcmToken);
 
         });
@@ -88,14 +93,14 @@ public class Order extends AppCompatActivity {
                 details.append(et2.getText().toString()).append("-");
                 details.append(et.getText().toString()).append(" ");
             }
-            OrderModel orderModel = new OrderModel(details.toString(), active);
+            OrderModel orderModel = new OrderModel(details.toString(), active, address,fcmToken);
             assert userKey != null;
             mdatabase.child(userKey).push().setValue(orderModel);
 
 
-            TOPIC = "/topics/wasaylclient"; //topic must match with what the receiver subscribed to
-            NOTIFICATION_TITLE = "Wasayl";
-            NOTIFICATION_MESSAGE = "New order";
+            TOPIC = "/topics/wasayldrivers"; //topic must match with what the receiver subscribed to
+            NOTIFICATION_TITLE = getResources().getString(R.string.notification_title);
+            NOTIFICATION_MESSAGE = details.toString();
 
             JSONObject notification = new JSONObject();
             JSONObject notifcationBody = new JSONObject();
@@ -119,7 +124,7 @@ public class Order extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(FCM_API, notification,
                 response -> {
                     Log.i(TAG, "onResponse: " + response.toString());
-                    Intent intent = new Intent(Order.this,Home.class);
+                    Intent intent = new Intent(Order.this, Home.class);
                     startActivity(intent);
                     finish();
                 },
@@ -129,7 +134,7 @@ public class Order extends AppCompatActivity {
                 }) {
 
             @Override
-            public Map<String, String> getHeaders(){
+            public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<>();
                 params.put("Authorization", serverKey);
                 params.put("Content-Type", contentType);

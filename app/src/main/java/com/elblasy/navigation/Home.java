@@ -61,7 +61,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     PlacesListAdapter placesListAdapter;
     CategoryAdapter category;
     ProgressBar progressBar;
-    ObjectAnimator animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

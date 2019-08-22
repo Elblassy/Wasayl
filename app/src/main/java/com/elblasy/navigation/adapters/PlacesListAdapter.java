@@ -1,19 +1,21 @@
 package com.elblasy.navigation.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.elblasy.navigation.Order;
 import com.elblasy.navigation.R;
 import com.elblasy.navigation.models.Result;
 
@@ -26,6 +28,7 @@ public class PlacesListAdapter extends RecyclerView.Adapter<PlacesListAdapter.Vi
     private Context context;
     private List<Result> results;
     private int lastPosition = -1;
+
 
     public PlacesListAdapter(Context context, List<Result> results) {
 
@@ -40,7 +43,6 @@ public class PlacesListAdapter extends RecyclerView.Adapter<PlacesListAdapter.Vi
 
         View view = LayoutInflater.from(context).inflate(R.layout.place_row_layout, parent, false);
 
-
         return new ViewHolder(view);
 
     }
@@ -50,17 +52,24 @@ public class PlacesListAdapter extends RecyclerView.Adapter<PlacesListAdapter.Vi
         Result result = results.get(position);
         holder.textViewName.setText(result.getName());
         holder.textViewAddress.setText(result.getVicinity());
+        holder.ratingBar.setNumStars(5);
 
-        setAnimation(holder.layout, position);
+        setAnimation(holder.cardView, position);
 
         if (result.getRating() != null)
-            holder.ratingBar.setNumStars(result.getRating().intValue());
+            holder.ratingBar.setRating(result.getRating().intValue());
 
         Glide.with(context)
                 .load(result.getIcon())
                 .skipMemoryCache(false)
                 .centerCrop()
                 .into(holder.icon);
+
+        holder.cardView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, Order.class);
+            intent.putExtra("Address", holder.textViewAddress.getText());
+            context.startActivity(intent);
+        });
     }
 
 
@@ -90,7 +99,7 @@ public class PlacesListAdapter extends RecyclerView.Adapter<PlacesListAdapter.Vi
         private TextView textViewAddress;
         private CircleImageView icon;
         private RatingBar ratingBar;
-        private LinearLayout layout;
+        private CardView cardView;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -98,7 +107,7 @@ public class PlacesListAdapter extends RecyclerView.Adapter<PlacesListAdapter.Vi
             textViewAddress = itemView.findViewById(R.id.textViewAddress);
             icon = itemView.findViewById(R.id.icon);
             ratingBar = itemView.findViewById(R.id.rating);
-            layout = itemView.findViewById(R.id.layout1);
+            cardView = itemView.findViewById(R.id.layout1);
 
         }
     }

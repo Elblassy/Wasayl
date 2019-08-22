@@ -38,11 +38,12 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
 
     //firebase
-    implementation 'com.google.firebase:firebase-core:17.0.1'
-    implementation 'com.google.firebase:firebase-database:18.0.1'
-    implementation 'com.google.firebase:firebase-auth:18.1.0'
-    implementation 'com.google.firebase:firebase-storage:18.1.1'
-    implementation 'com.google.firebase:firebase-messaging:19.0.1'
+    implementation 'com.google.firebase:firebase-core:17.1.0'
+    implementation 'com.google.firebase:firebase-database:19.0.0'
+    implementation 'com.google.firebase:firebase-auth:19.0.0'
+    implementation 'com.google.firebase:firebase-storage:19.0.0'
+    implementation 'com.google.firebase:firebase-messaging:20.0.0'
+    implementation 'com.google.firebase:firebase-analytics:17.1.0'
 
     //digits input
     implementation 'com.github.GoodieBag:Pinview:v1.3'

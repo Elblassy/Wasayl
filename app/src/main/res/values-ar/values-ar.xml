@@ -40,4 +40,7 @@
     <string name="order_detail">اكتب طلبك…</string>
     <string name="order_number">١</string>
 
+    <!-- notification -->
+    <string name="notification_title">طلب جديد</string>
+
 </resources>
