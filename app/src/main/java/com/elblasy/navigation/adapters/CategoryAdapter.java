@@ -1,11 +1,11 @@
 package com.elblasy.navigation.adapters;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -16,9 +16,6 @@ import com.elblasy.navigation.CustomItemClickListener;
 import com.elblasy.navigation.R;
 
 import java.util.ArrayList;
-import java.util.Random;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
 
@@ -47,10 +44,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_card,
                 parent, false);
 
-        final ViewHolder myViewHolder = new ViewHolder(view);
-
-
-        return myViewHolder;
+        return new ViewHolder(view);
 
 
     }
@@ -63,7 +57,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         holder.imageView.setImageResource(mImage.get(position));
 
-        holder.imageView.setCircleBackgroundColor(generateRandomColor());
 
         holder.layout.setOnClickListener(view -> {
             listener.onItemClick(view, position);
@@ -108,7 +101,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView textView;
-        CircleImageView imageView;
+        ImageView imageView;
         RelativeLayout layout;
 
         ViewHolder(View view) {
@@ -120,20 +113,20 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         }
     }
 
-    final private Random mRandom = new Random(System.currentTimeMillis());
-
-    private int generateRandomColor() {
-        // This is the base color which will be mixed with the generated one
-        final int baseColor = Color.WHITE;
-
-        final int baseRed = Color.red(baseColor);
-        final int baseGreen = Color.green(baseColor);
-        final int baseBlue = Color.blue(baseColor);
-
-        final int red = (baseRed + mRandom.nextInt(256)) / 2;
-        final int green = (baseGreen + mRandom.nextInt(256)) / 2;
-        final int blue = (baseBlue + mRandom.nextInt(256)) / 2;
-
-        return Color.rgb(red, green, blue);
-    }
+//    final private Random mRandom = new Random(System.currentTimeMillis());
+//
+//    private int generateRandomColor() {
+//        // This is the base color which will be mixed with the generated one
+//        final int baseColor = Color.WHITE;
+//
+//        final int baseRed = Color.red(baseColor);
+//        final int baseGreen = Color.green(baseColor);
+//        final int baseBlue = Color.blue(baseColor);
+//
+//        final int red = (baseRed + mRandom.nextInt(256)) / 2;
+//        final int green = (baseGreen + mRandom.nextInt(256)) / 2;
+//        final int blue = (baseBlue + mRandom.nextInt(256)) / 2;
+//
+//        return Color.rgb(red, green, blue);
+//    }
 }

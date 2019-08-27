@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Navigation</string>
+    <string name="app_name">Wasayl</string>
     <string name="verify">تحقق</string>
     <string name="user_name">الاسم</string>
     <string name="lets_start">هيا بنا لنبدأ</string>
@@ -16,7 +16,9 @@
     <string name="action_settings">الاعددات</string>
     <string name="action_sign_out">تسجيل الخروج</string>
     <string name="any_place">مش لاقى المكان ؟</string>
-    <string name="move_any_thing">أنقل أي حاجة لأي مكان</string>
+    <string name="move_any_thing">أنقل أي حاجة فى أي وقت لأي مكان</string>
+    <string name="category">فئات</string>
+    <string name="list_of_places">قائمة الاماكن</string>
 
 
     <string name="menu_home">الرئيسية</string>

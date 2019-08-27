@@ -2,19 +2,45 @@ package com.elblasy.navigation.models;
 
 public class OrderModel {
 
-    private String details;
-    private String address;
     private boolean active;
-    private String token;
+    private String details, placeName, userName, address, token, phoneNumber;
 
     public OrderModel() {
     }
 
-    public OrderModel(String details, boolean active,String address,String token) {
-        this.details = details;
+    public OrderModel(boolean active, String details, String address, String placeName,
+                      String userName, String token, String phoneNumber) {
+        this.phoneNumber = phoneNumber;
         this.active = active;
+        this.details = details;
         this.address = address;
         this.token = token;
+        this.placeName = placeName;
+        this.userName = userName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getPlaceName() {
+        return placeName;
+    }
+
+    public void setPlaceName(String placeName) {
+        this.placeName = placeName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getToken() {

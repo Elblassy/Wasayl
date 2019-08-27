@@ -38,6 +38,9 @@
             android:background="@android:color/transparent"
             android:hint="@string/order_detail"
             android:maxLines="1"
+            android:ellipsize="end"
+            android:inputType="text"
+            android:lines="1"
             android:textColor="#fff"
             android:textColorHint="@android:color/darker_gray"
             android:textSize="24dp" />

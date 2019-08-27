@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,13 +33,13 @@ import java.util.Map;
 public class Order extends AppCompatActivity {
 
     TextView cobon;
-    private DatabaseReference mdatabase;
+    String address, placeName;
     private StringBuilder details;
     private boolean active = true;
     FirebaseAuth firebaseAuth;
     ListView listView;
     EditAdapter editAdapter;
-    String address;
+    ProgressBar progressBar;
 
     final private String FCM_API = "https://fcm.googleapis.com/fcm/send";
     final private String serverKey = "key=" + "AAAAMgUYmxc:APA91bHLBfsU1MbJwOCcpW-6g5cg11cQZ901bbPVY83Dh2Td_Q79B7V-YDchmdg4qC9S92TRLPjRnxArXCySyZ1Pw4QNQlZHI4q_iNVeHlMcGltltCrMjEZFqBpblE1J_ECPkDiS0AiP";
@@ -49,7 +50,7 @@ public class Order extends AppCompatActivity {
     String NOTIFICATION_MESSAGE;
     String TOPIC;
     String fcmToken;
-
+    private DatabaseReference mdatabase, ordersDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +59,18 @@ public class Order extends AppCompatActivity {
 
         Intent intent = getIntent();
         address = intent.getStringExtra("Address");
+        placeName = intent.getStringExtra("place_name");
 
-        mdatabase = FirebaseDatabase.getInstance().getReference("orders");
+        mdatabase = FirebaseDatabase.getInstance().getReference("ClientOrders");
+        ordersDatabase = FirebaseDatabase.getInstance().getReference("orders");
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
         assert user != null;
         String userKey = user.getPhoneNumber();
 
         cobon = findViewById(R.id.text_cobon);
+        progressBar = findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.GONE);
 
         listView = findViewById(R.id.list_item);
         editAdapter = new EditAdapter(this);
@@ -86,6 +91,7 @@ public class Order extends AppCompatActivity {
 
         placeOrder.setOnClickListener(v -> {
             details = new StringBuilder();
+            progressBar.setVisibility(View.VISIBLE);
             for (int i = 0; i < listView.getChildCount() - 1; i++) {
                 View view = listView.getChildAt(i);
                 EditText et = view.findViewById(R.id.editText1);
@@ -93,9 +99,11 @@ public class Order extends AppCompatActivity {
                 details.append(et2.getText().toString()).append("-");
                 details.append(et.getText().toString()).append(" ");
             }
-            OrderModel orderModel = new OrderModel(details.toString(), active, address,fcmToken);
+            OrderModel orderModel = new OrderModel(active, details.toString(), address, placeName,
+                    "Elblasy", fcmToken, userKey);
             assert userKey != null;
             mdatabase.child(userKey).push().setValue(orderModel);
+            ordersDatabase.push().setValue(orderModel);
 
 
             TOPIC = "/topics/wasayldrivers"; //topic must match with what the receiver subscribed to
@@ -126,10 +134,12 @@ public class Order extends AppCompatActivity {
                     Log.i(TAG, "onResponse: " + response.toString());
                     Intent intent = new Intent(Order.this, Home.class);
                     startActivity(intent);
+                    progressBar.setVisibility(View.GONE);
                     finish();
                 },
                 error -> {
                     Toast.makeText(Order.this, "Request error", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
                     Log.i(TAG, "onErrorResponse: Didn't work");
                 }) {
 

@@ -68,6 +68,7 @@ public class PlacesListAdapter extends RecyclerView.Adapter<PlacesListAdapter.Vi
         holder.cardView.setOnClickListener(v -> {
             Intent intent = new Intent(context, Order.class);
             intent.putExtra("Address", holder.textViewAddress.getText());
+            intent.putExtra("place_name", holder.textViewName.getText());
             context.startActivity(intent);
         });
     }

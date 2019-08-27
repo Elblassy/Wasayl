@@ -3,6 +3,8 @@ package com.elblasy.navigation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,7 +51,9 @@ public class VerifyPhoneNumber extends AppCompatActivity {
 
         sendVerificationCode(mobile);
 
-        findViewById(R.id.sign).setOnClickListener(v -> {
+        Button sign = findViewById(R.id.sign);
+
+        sign.setOnClickListener(v -> {
             String code = codeInputView.getValue();
 
             if (code.isEmpty() || code.length() < 6) {
@@ -108,12 +112,18 @@ public class VerifyPhoneNumber extends AppCompatActivity {
     };
 
     private void verifyVerificationCode(String code) {
+        try {
+            //creating the credential
+            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
 
-        //creating the credential
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
+            //signing the user
+            signInWithPhoneAuthCredential(credential);
+        } catch (Exception e) {
+            Toast toast = Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+        }
 
-        //signing the user
-        signInWithPhoneAuthCredential(credential);
     }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {

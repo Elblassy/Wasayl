@@ -67,6 +67,7 @@ public class EditAdapter extends BaseAdapter {
             holder = (ViewHolder) v.getTag();
         }
 
+
         holder.details.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -90,10 +91,10 @@ public class EditAdapter extends BaseAdapter {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                holder.number.setFocusable(false);
+                holder.details.setFocusable(true);
             }
         });
-
 
         return v;
     }
