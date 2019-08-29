@@ -28,7 +28,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.elblasy.navigation.R;
-import com.elblasy.navigation.SpeackToDriver;
+import com.elblasy.navigation.activities.SpeackToDriver;
 import com.elblasy.navigation.adapters.CategoryAdapter;
 import com.elblasy.navigation.adapters.PlacesListAdapter;
 import com.elblasy.navigation.api.APIClient;
@@ -63,6 +63,7 @@ public class HomeFragment extends Fragment {
     private ProgressBar progressBar;
     private TextView list;
     private View rootView;
+
     //location listener to get list of places
     LocationListener locationListener = new LocationListener() {
         @Override

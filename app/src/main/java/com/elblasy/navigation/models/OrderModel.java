@@ -3,13 +3,13 @@ package com.elblasy.navigation.models;
 public class OrderModel {
 
     private boolean active;
-    private String details, placeName, userName, address, token, phoneNumber;
+    private String details, placeName, userName, address, token, phoneNumber, driverName;
 
     public OrderModel() {
     }
 
     public OrderModel(boolean active, String details, String address, String placeName,
-                      String userName, String token, String phoneNumber) {
+                      String userName, String token, String phoneNumber, String driverName) {
         this.phoneNumber = phoneNumber;
         this.active = active;
         this.details = details;
@@ -17,6 +17,15 @@ public class OrderModel {
         this.token = token;
         this.placeName = placeName;
         this.userName = userName;
+        this.driverName = driverName;
+    }
+
+    public String getDriverName() {
+        return driverName;
+    }
+
+    public void setDriverName(String driverName) {
+        this.driverName = driverName;
     }
 
     public String getPhoneNumber() {

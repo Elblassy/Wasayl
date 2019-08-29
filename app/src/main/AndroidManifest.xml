@@ -13,14 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SpeackToDriver" />
+        <activity android:name="com.elblasy.navigation.activities.SpeackToDriver" />
 
         <activity
-            android:name=".Order"
+            android:name="com.elblasy.navigation.activities.Order"
             android:windowSoftInputMode="stateUnchanged" />
 
         <activity
-            android:name=".SplashScreen"
+            android:name="com.elblasy.navigation.activities.SplashScreen"
             android:screenOrientation="portrait"
             android:theme="@style/splash.screen">
             <intent-filter>
@@ -38,14 +38,14 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <activity
-            android:name=".Home"
+            android:name="com.elblasy.navigation.activities.Home"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".Sign"
+            android:name="com.elblasy.navigation.activities.Sign"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".VerifyPhoneNumber" />
+        <activity android:name="com.elblasy.navigation.activities.VerifyPhoneNumber" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

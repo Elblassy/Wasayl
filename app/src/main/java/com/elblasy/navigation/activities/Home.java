@@ -1,4 +1,4 @@
-package com.elblasy.navigation;
+package com.elblasy.navigation.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.elblasy.navigation.R;
 import com.elblasy.navigation.fragments.HomeFragment;
 import com.elblasy.navigation.fragments.MyOrdersFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -67,11 +68,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
     }
-
-
-
-
-
 
     @Override
     public void onBackPressed() {

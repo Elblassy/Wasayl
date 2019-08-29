@@ -1,4 +1,4 @@
-package com.elblasy.navigation;
+package com.elblasy.navigation.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.elblasy.navigation.R;
 import com.elblasy.navigation.models.User;
 import com.goodiebag.pinview.Pinview;
 import com.google.android.gms.tasks.TaskExecutors;
@@ -29,7 +30,7 @@ public class VerifyPhoneNumber extends AppCompatActivity {
     private Pinview codeInputView;
     private FirebaseAuth mAuth;
     private DatabaseReference mdatabase;
-    private String mobile, name, country, city;
+    private String mobile, name, city;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +43,8 @@ public class VerifyPhoneNumber extends AppCompatActivity {
 
         Intent intent = getIntent();
         mobile = intent.getStringExtra("mobile");
-        name = "ahmed";
-        country = "ahmed";
-        city = "ahmed";
+        name = intent.getStringExtra("user");
+        city = intent.getStringExtra("city");
 
         final TextView mobileText = findViewById(R.id.mobile);
         mobileText.setText(mobile);
@@ -133,8 +133,8 @@ public class VerifyPhoneNumber extends AppCompatActivity {
                     if (task.isSuccessful()) {
 
 
-                        User users = new User(name, mobile, country, city, "Client");
-                        mdatabase.child(mobile).setValue(users);
+                        User users = new User(name, mobile, city);
+                        mdatabase.child("Clients").child(city).child(mobile).setValue(users);
 
                         //verification successful we will start the profile activity
                         Intent intent = new Intent(VerifyPhoneNumber.this, Home.class);

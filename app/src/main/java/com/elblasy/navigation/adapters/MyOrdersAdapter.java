@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 
 import com.elblasy.navigation.R;
-import com.elblasy.navigation.SpeackToDriver;
+import com.elblasy.navigation.activities.SpeackToDriver;
 import com.elblasy.navigation.models.OrderModel;
 
 import java.util.ArrayList;

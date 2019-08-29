@@ -3,8 +3,7 @@
     <string name="verify">Verify</string>
     <string name="user_name">Username</string>
     <string name="phone_number">Mobile number</string>
-    <string name="lets_start">Let\'s get started</string>
-    <string name="verify_phone">Wait until the code will sent to this number</string>
+    <string name="verify_phone">Please type the verification code sent to</string>
     <string name="title_activity_home">Home</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -15,6 +14,8 @@
     <string name="action_sign_out">Sign out</string>
     <string name="any_place">Doesn\'t find place ?</string>
     <string name="move_any_thing">Move anything, anytime, anywhere</string>
+    <string name="get_any_thing">Get anything, anytime, anywhere</string>
+
     <string name="category">Category</string>
     <string name="list_of_places">List of places</string>
 
@@ -42,7 +43,37 @@
     <!-- notification -->
     <string name="notification_title">New Order</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="Cities">
+        <item>Cairo</item>
+        <item>Alexandria</item>
+        <item>Gizeh</item>
+        <item>Ismailia</item>
+        <item>Port Said</item>
+        <item>Suez</item>
+        <item>Sohag</item>
+        <item>Luxor</item>
+        <item>Al-Mansura</item>
+        <item>El-Mahalla El-Kubra</item>
+        <item>Tanta</item>
+        <item>Asyut</item>
+        <item>Fayyum</item>
+        <item>Zagazig</item>
+        <item>Aswan</item>
+        <item>Damietta</item>
+        <item>Damanhur</item>
+        <item>al-Minya</item>
+        <item>Beni Suef</item>
+        <item>Qena</item>
+        <item>Hurghada</item>
+        <item>6th of October City</item>
+        <item>Shibin El Kom</item>
+        <item>Banha</item>
+        <item>Kafr el-Sheikh</item>
+        <item>Arish</item>
+        <item>Mallawi</item>
+        <item>10th of Ramadan City</item>
+        <item>Bilbais</item>
+        <item>Marsa Matruh</item>
+    </string-array>
 
 </resources>

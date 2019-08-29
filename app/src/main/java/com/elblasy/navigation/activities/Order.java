@@ -1,4 +1,4 @@
-package com.elblasy.navigation;
+package com.elblasy.navigation.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.elblasy.navigation.R;
 import com.elblasy.navigation.adapters.EditAdapter;
 import com.elblasy.navigation.models.MySingleton;
 import com.elblasy.navigation.models.OrderModel;
@@ -100,13 +101,13 @@ public class Order extends AppCompatActivity {
                 details.append(et.getText().toString()).append(" ");
             }
             OrderModel orderModel = new OrderModel(active, details.toString(), address, placeName,
-                    "Elblasy", fcmToken, userKey);
+                    "Elblasy", fcmToken, userKey, "unknown");
             assert userKey != null;
             mdatabase.child(userKey).push().setValue(orderModel);
-            ordersDatabase.push().setValue(orderModel);
+            ordersDatabase.child(placeName + userKey).setValue(orderModel);
 
 
-            TOPIC = "/topics/wasayldrivers"; //topic must match with what the receiver subscribed to
+            TOPIC = "/topics/Port Said"; //topic must match with what the receiver subscribed to
             NOTIFICATION_TITLE = getResources().getString(R.string.notification_title);
             NOTIFICATION_MESSAGE = details.toString();
 

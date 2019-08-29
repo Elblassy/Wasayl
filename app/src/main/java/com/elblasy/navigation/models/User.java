@@ -2,18 +2,15 @@ package com.elblasy.navigation.models;
 
 public class User {
 
-    private String username, mobile,country,city,userType;
+    private String username, mobile, city;
 
     public User() {
     }
 
-
-    public User(String username, String mobile, String country, String city, String userType) {
+    public User(String username, String mobile, String city) {
         this.username = username;
         this.mobile = mobile;
-        this.country = country;
         this.city = city;
-        this.userType = userType;
     }
 
     //Getters and Setters
@@ -25,7 +22,7 @@ public class User {
         this.username = username;
     }
 
-    public  String getMobile() {
+    public String getMobile() {
         return mobile;
     }
 
@@ -33,13 +30,6 @@ public class User {
         this.mobile = mobile;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
 
     public String getCity() {
         return city;
@@ -49,12 +39,6 @@ public class User {
         this.city = city;
     }
 
-    public String getUserType() {
-        return userType;
-    }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
 }
 

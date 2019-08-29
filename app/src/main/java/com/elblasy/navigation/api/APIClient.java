@@ -15,7 +15,6 @@ public class APIClient {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient client = new OkHttpClient.Builder()
-
                 .addInterceptor(interceptor)
                 .followRedirects(false)
                 .build();

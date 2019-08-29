@@ -16,7 +16,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 import com.elblasy.navigation.R;
-import com.elblasy.navigation.SpeackToDriver;
+import com.elblasy.navigation.activities.SpeackToDriver;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;

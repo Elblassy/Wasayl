@@ -1,10 +1,15 @@
-package com.elblasy.navigation;
+package com.elblasy.navigation.activities;
 
 import android.content.Intent;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -12,8 +17,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.elblasy.navigation.R;
 import com.elblasy.navigation.adapters.MessageListAdapter;
 import com.elblasy.navigation.models.Message;
 import com.elblasy.navigation.models.MySingleton;
@@ -47,9 +55,13 @@ public class SpeackToDriver extends AppCompatActivity {
 
     EditText editText;
     ListView listView;
-    DatabaseReference reference;
+    DatabaseReference reference, orderReference;
     private MessageListAdapter mAdapter;
     private ArrayList<Message> messageList;
+    ConstraintLayout constraintLayout;
+    ConstraintSet constraintSet;
+    int mPosition = -1;
+    private LinearLayout chatLayout, selectLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +79,54 @@ public class SpeackToDriver extends AppCompatActivity {
         editText = findViewById(R.id.edit_text);
         ImageView send = findViewById(R.id.send);
         listView = findViewById(R.id.list_view);
+        chatLayout = findViewById(R.id.linearLayout);
+        selectLayout = findViewById(R.id.linearLayout2);
+        constraintLayout = findViewById(R.id.constraint);
+
+        chatLayout.setVisibility(View.GONE);
+        selectLayout.setVisibility(View.VISIBLE);
+
+        Button agree = findViewById(R.id.agree);
+        Button show = findViewById(R.id.show);
+
+        constraintSet = new ConstraintSet();
+        constraintSet.clone(constraintLayout);
+
+        agree.setOnClickListener(v -> {
+            if (mPosition == -1) {
+                Toast.makeText(SpeackToDriver.this, "Please choose one of diver's offers",
+                        Toast.LENGTH_LONG).show();
+                return;
+            }
+            constraintSet.connect(listView.getId(), ConstraintSet.BOTTOM, chatLayout.getId(),
+                    ConstraintSet.TOP, 0);
+            constraintSet.applyTo(constraintLayout);
+            chatLayout.setVisibility(View.VISIBLE);
+            selectLayout.setVisibility(View.GONE);
+
+            listView.setSelector(new StateListDrawable());
+
+            Message message = messageList.get(mPosition);
+
+            orderReference.child("driverName").setValue(message.getSender());
+
+
+        });
+
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            mPosition = position;
+
+        });
+
+
 
         messageList = new ArrayList<>();
 
         mAdapter = new MessageListAdapter(this, messageList);
         listView.setAdapter(mAdapter);
+
+        listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
@@ -79,10 +134,12 @@ public class SpeackToDriver extends AppCompatActivity {
 
         Intent intent = getIntent();
         String placeName = intent.getStringExtra("placeName");
+        String mobile = intent.getStringExtra("phoneNumber");
 
         Log.i("SPEAK", placeName);
 
         reference = FirebaseDatabase.getInstance().getReference("chats").child(userKey).child(placeName);
+        orderReference = FirebaseDatabase.getInstance().getReference("orders").child(placeName + mobile);
 
 
         loadMessages();

@@ -4,7 +4,6 @@
     <string name="app_name">Wasayl</string>
     <string name="verify">تحقق</string>
     <string name="user_name">الاسم</string>
-    <string name="lets_start">هيا بنا لنبدأ</string>
     <string name="phone_number">رقم الموبيل</string>
     <string name="verify_phone">انتظر حتى يتم ارسال الكود الى الرقم</string>
     <string name="title_activity_home">الرئيسية</string>
@@ -22,8 +21,8 @@
 
 
     <string name="menu_home">الرئيسية</string>
-    <string name="menu_gallery">الصور</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_orders">طلباتي</string>
+    <string name="menu_history">الطلبات السابقة</string>
     <string name="menu_tools">الادوات</string>
     <string name="menu_share">المشاركة</string>
     <string name="menu_send">ارسال</string>
@@ -44,5 +43,39 @@
 
     <!-- notification -->
     <string name="notification_title">طلب جديد</string>
+
+
+    <string-array name="Cities">
+        <item>القاهرة</item>
+        <item>الأسكندرية</item>
+        <item>الجيزة</item>
+        <item>الإسماعيلية</item>
+        <item>بورسعيد</item>
+        <item>السويس</item>
+        <item>سوهاج</item>
+        <item>الأقصر</item>
+        <item>المنصورة</item>
+        <item>المحلة الكبرى</item>
+        <item>طنطا</item>
+        <item>أسيوط</item>
+        <item>الفيوم</item>
+        <item>الزقازيق</item>
+        <item>أسوان</item>
+        <item>دمياط</item>
+        <item>دمنهور</item>
+        <item>المنيا</item>
+        <item>بني سويف</item>
+        <item>قنا</item>
+        <item>الغردقة</item>
+        <item>مدينة السادس من أكتوبر</item>
+        <item>شبين الكوم</item>
+        <item>بنها</item>
+        <item>كفر الشيخ</item>
+        <item>العريش</item>
+        <item>ملوى</item>
+        <item>مدينة العاشر من رمضان</item>
+        <item>بلبيس</item>
+        <item>مرسى مطروح</item>
+    </string-array>
 
 </resources>

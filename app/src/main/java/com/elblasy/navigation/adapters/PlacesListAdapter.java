@@ -15,8 +15,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.elblasy.navigation.Order;
 import com.elblasy.navigation.R;
+import com.elblasy.navigation.activities.Order;
 import com.elblasy.navigation.models.Result;
 
 import java.util.List;
