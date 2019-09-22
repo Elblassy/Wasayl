@@ -14,14 +14,12 @@ public class Result implements Serializable {
     @SerializedName("icon")
     private String icon;
 
-    @SerializedName("id")
-    private String id;
+    @SerializedName("vicinity")
+    private String vicinity;
 
     @SerializedName("name")
     private String name;
 
-    @SerializedName("opening_hours")
-    private OpeningHours openingHours;
 
     @SerializedName("photos")
     private List<Photo> photos = new ArrayList<>();
@@ -29,23 +27,7 @@ public class Result implements Serializable {
     @SerializedName("place_id")
     private String placeId;
 
-    @SerializedName("rating")
-    private Double rating;
 
-    @SerializedName("reference")
-    private String reference;
-
-    @SerializedName("scope")
-    private String scope;
-
-    @SerializedName("types")
-    private List<String> types = new ArrayList<String>();
-
-    @SerializedName("vicinity")
-    private String vicinity;
-
-    @SerializedName("price_level")
-    private Integer priceLevel;
 
     /**
      * @return The geometry
@@ -76,17 +58,17 @@ public class Result implements Serializable {
     }
 
     /**
-     * @return The id
+     * @return The vicinity
      */
-    public String getId() {
-        return id;
+    public String getVicinity() {
+        return vicinity;
     }
 
     /**
-     * @param id The id
+     * @param vicinity The vicinity
      */
-    public void setId(String id) {
-        this.id = id;
+    public void setVicinity(String vicinity) {
+        this.vicinity = vicinity;
     }
 
     /**
@@ -101,20 +83,6 @@ public class Result implements Serializable {
      */
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * @return The openingHours
-     */
-    public OpeningHours getOpeningHours() {
-        return openingHours;
-    }
-
-    /**
-     * @param openingHours The opening_hours
-     */
-    public void setOpeningHours(OpeningHours openingHours) {
-        this.openingHours = openingHours;
     }
 
     /**
@@ -145,87 +113,5 @@ public class Result implements Serializable {
         this.placeId = placeId;
     }
 
-    /**
-     * @return The rating
-     */
-    public Double getRating() {
-        return rating;
-    }
 
-    /**
-     * @param rating The rating
-     */
-    public void setRating(Double rating) {
-        this.rating = rating;
-    }
-
-    /**
-     * @return The reference
-     */
-    public String getReference() {
-        return reference;
-    }
-
-    /**
-     * @param reference The reference
-     */
-    public void setReference(String reference) {
-        this.reference = reference;
-    }
-
-    /**
-     * @return The scope
-     */
-    public String getScope() {
-        return scope;
-    }
-
-    /**
-     * @param scope The scope
-     */
-    public void setScope(String scope) {
-        this.scope = scope;
-    }
-
-    /**
-     * @return The types
-     */
-    public List<String> getTypes() {
-        return types;
-    }
-
-    /**
-     * @param types The types
-     */
-    public void setTypes(List<String> types) {
-        this.types = types;
-    }
-
-    /**
-     * @return The vicinity
-     */
-    public String getVicinity() {
-        return vicinity;
-    }
-
-    /**
-     * @param vicinity The vicinity
-     */
-    public void setVicinity(String vicinity) {
-        this.vicinity = vicinity;
-    }
-
-    /**
-     * @return The priceLevel
-     */
-    public Integer getPriceLevel() {
-        return priceLevel;
-    }
-
-    /**
-     * @param priceLevel The price_level
-     */
-    public void setPriceLevel(Integer priceLevel) {
-        this.priceLevel = priceLevel;
-    }
 }

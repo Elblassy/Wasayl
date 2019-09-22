@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/title"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_margin="8dp"
+    android:drawableEnd="@drawable/ic_arrow"
+    android:drawablePadding="4dp"
+    android:gravity="center_vertical"
+    android:padding="4dp"
+    android:text="Edit Profile"
+    android:textColor="#000"
+    android:textSize="12pt" />
+

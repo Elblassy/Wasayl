@@ -5,12 +5,15 @@
     <string name="verify">تحقق</string>
     <string name="user_name">الاسم</string>
     <string name="phone_number">رقم الموبيل</string>
+    <string name="save_button">حفظ</string>
+    <string name="city">المدينة</string>
+    <string name="sign_in">تسجيل الدخول</string>
     <string name="verify_phone">انتظر حتى يتم ارسال الكود الى الرقم</string>
     <string name="title_activity_home">الرئيسية</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">اندرويد</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">وسايل</string>
+    <string name="nav_header_subtitle">M.Elblasy14@gmail.com</string>
     <string name="nav_header_desc">هيدر</string>
     <string name="action_settings">الاعددات</string>
     <string name="action_sign_out">تسجيل الخروج</string>
@@ -20,29 +23,50 @@
     <string name="list_of_places">قائمة الاماكن</string>
 
 
+    <string name="communicate">التواصل</string>
+
     <string name="menu_home">الرئيسية</string>
     <string name="menu_orders">طلباتي</string>
     <string name="menu_history">الطلبات السابقة</string>
-    <string name="menu_tools">الادوات</string>
+    <string name="menu_settings">الأعدادات</string>
     <string name="menu_share">المشاركة</string>
     <string name="menu_send">ارسال</string>
 
     <string name="restaurant">مطاعم</string>
     <string name="groceries">سوبر ماركت</string>
-    <string name="medicine">صيدليات</string>
-    <string name="gifts">هدايا</string>
-    <string name="sweets">حلوى</string>
+    <string name="clothe">ملابس</string>
+    <string name="electric">أدوات كهربائية</string>
+    <string name="florist">ورد</string>
     <string name="cafe">قهوة</string>
     <string name="bakery">مخبوزات</string>
-    <string name="casino">كازينو</string>
+    <string name="book">كتب</string>
 
 
     <!-- order edit text -->
     <string name="order_detail">اكتب طلبك…</string>
-    <string name="order_number">١</string>
 
     <!-- notification -->
     <string name="notification_title">طلب جديد</string>
+
+    <!-- settings activity -->
+    <string name="edit_profile">تعديل المعلومات الشخصية</string>
+    <string name="language">لغة البرنامج</string>
+
+    <string name="choose_language">اختر لغة التطبيق</string>
+
+    <!-- location in order -->
+    <string name="from">نقطة الإستلام</string>
+    <string name="to">نقطة التوصيل</string>
+
+    <!-- Toast -->
+    <string name="valid_location">من فضلك ادخل عنوان صحيح</string>
+    <string name="valid_user_name">من فضلك اكتب اسمك صحيح</string>
+    <string name="valid_phone_number">من فضلك ادخل رقم هاتف صحيح</string>
+    <string name="valid_city">من فضلك اختار مدينتك</string>
+    <string name="toost_to_restart">يجب عليك اغلاق التطبيق واعادة فتحه</string>
+
+    <string name="orders">أطلب طلبك</string>
+    <string name="details_of_order">تفاصيل الاوردر</string>
 
 
     <string-array name="Cities">

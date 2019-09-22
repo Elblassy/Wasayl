@@ -18,7 +18,6 @@ import androidx.core.app.NotificationCompat;
 import com.elblasy.navigation.R;
 import com.elblasy.navigation.activities.SpeackToDriver;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -39,8 +38,6 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onNewToken(@NotNull String s) {
         super.onNewToken(s);
-
-        FirebaseMessaging.getInstance().subscribeToTopic("wasaylclient");
 
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(task -> {
@@ -97,7 +94,7 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void setupChannels() {
 
-        CharSequence adminChannelName = "Messages";
+        CharSequence adminChannelName = "Client's Messages";
         String adminChannelDescription = "Receive messages for your order";
 
         NotificationChannel adminChannel;

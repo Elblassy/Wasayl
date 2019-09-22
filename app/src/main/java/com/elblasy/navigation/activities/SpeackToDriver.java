@@ -1,15 +1,14 @@
 package com.elblasy.navigation.activities;
 
 import android.content.Intent;
-import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -17,10 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.elblasy.navigation.LocaleUtils;
 import com.elblasy.navigation.R;
 import com.elblasy.navigation.adapters.MessageListAdapter;
 import com.elblasy.navigation.models.Message;
@@ -33,6 +31,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,23 +44,23 @@ public class SpeackToDriver extends AppCompatActivity {
 
     final String TAG = "NOTIFICATION TAG";
     final private String FCM_API = "https://fcm.googleapis.com/fcm/send";
-    final private String serverKey = "key=" + "your key";
+    final private String serverKey = "key=" + "AAAAMgUYmxc:APA91bHLBfsU1MbJwOCcpW-6g5cg11cQZ901bbPVY83Dh2Td_Q79B7V-YDchmdg4qC9S92TRLPjRnxArXCySyZ1Pw4QNQlZHI4q_iNVeHlMcGltltCrMjEZFqBpblE1J_ECPkDiS0AiP";
     final private String contentType = "application/json";
 
 
     String NOTIFICATION_TITLE;
     String NOTIFICATION_MESSAGE;
-    String TOPIC, token;
+    String TOPIC, token, myToken;
 
     EditText editText;
     ListView listView;
     DatabaseReference reference, orderReference;
     private MessageListAdapter mAdapter;
     private ArrayList<Message> messageList;
-    ConstraintLayout constraintLayout;
-    ConstraintSet constraintSet;
-    int mPosition = -1;
-    private LinearLayout chatLayout, selectLayout;
+
+    public SpeackToDriver() {
+        LocaleUtils.updateConfig(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,45 +78,29 @@ public class SpeackToDriver extends AppCompatActivity {
         editText = findViewById(R.id.edit_text);
         ImageView send = findViewById(R.id.send);
         listView = findViewById(R.id.list_view);
-        chatLayout = findViewById(R.id.linearLayout);
-        selectLayout = findViewById(R.id.linearLayout2);
-        constraintLayout = findViewById(R.id.constraint);
 
-        chatLayout.setVisibility(View.GONE);
-        selectLayout.setVisibility(View.VISIBLE);
+        send.setVisibility(View.GONE);
 
-        Button agree = findViewById(R.id.agree);
-        Button show = findViewById(R.id.show);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        constraintSet = new ConstraintSet();
-        constraintSet.clone(constraintLayout);
-
-        agree.setOnClickListener(v -> {
-            if (mPosition == -1) {
-                Toast.makeText(SpeackToDriver.this, "Please choose one of diver's offers",
-                        Toast.LENGTH_LONG).show();
-                return;
             }
-            constraintSet.connect(listView.getId(), ConstraintSet.BOTTOM, chatLayout.getId(),
-                    ConstraintSet.TOP, 0);
-            constraintSet.applyTo(constraintLayout);
-            chatLayout.setVisibility(View.VISIBLE);
-            selectLayout.setVisibility(View.GONE);
 
-            listView.setSelector(new StateListDrawable());
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            Message message = messageList.get(mPosition);
+                if (count == 0)
+                    send.setVisibility(View.GONE);
+                else
+                    send.setVisibility(View.VISIBLE);
+            }
 
-            orderReference.child("driverName").setValue(message.getSender());
+            @Override
+            public void afterTextChanged(Editable s) {
 
-
+            }
         });
-
-        listView.setOnItemClickListener((parent, view, position, id) -> {
-            mPosition = position;
-
-        });
-
 
 
         messageList = new ArrayList<>();
@@ -138,36 +121,45 @@ public class SpeackToDriver extends AppCompatActivity {
 
         Log.i("SPEAK", placeName);
 
+        //database reference
         reference = FirebaseDatabase.getInstance().getReference("chats").child(userKey).child(placeName);
         orderReference = FirebaseDatabase.getInstance().getReference("orders").child(placeName + mobile);
 
-
+        //Load past message
         loadMessages();
 
+        //get my token
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this,
+                instanceIdResult -> {
+                    myToken = instanceIdResult.getToken();
+                    Log.e("myToken", myToken);
+
+                });
+
         send.setOnClickListener(v -> {
-            if (!messageList.isEmpty() && !editText.getText().toString().matches("")) {
-                TOPIC = "/topics/wasayldrivers"; //topic must match with what the receiver subscribed to
-                NOTIFICATION_TITLE = "Driver";
-                NOTIFICATION_MESSAGE = editText.getText().toString();
 
-                sendMessage("Client", "Driver", editText.getText().toString());
+            TOPIC = "/topics/wasayldrivers"; //topic must match with what the receiver subscribed to
+            NOTIFICATION_TITLE = "Driver";
+            NOTIFICATION_MESSAGE = editText.getText().toString();
 
-                JSONObject notification = new JSONObject();
-                JSONObject notifcationBody = new JSONObject();
-                try {
-                    notifcationBody.put("title", NOTIFICATION_TITLE);
-                    notifcationBody.put("message", NOTIFICATION_MESSAGE);
+            sendMessage("Client", "Driver", editText.getText().toString());
 
-                    notification.put("to", token);
-                    notification.put("data", notifcationBody);
+            JSONObject notification = new JSONObject();
+            JSONObject notifcationBody = new JSONObject();
+            try {
+                notifcationBody.put("title", NOTIFICATION_TITLE);
+                notifcationBody.put("message", NOTIFICATION_MESSAGE);
 
-                } catch (JSONException e) {
-                    Log.e(TAG, "onCreate: " + e.getMessage());
-                }
+                notification.put("to", token);
+                notification.put("data", notifcationBody);
 
-                System.out.println(notification);
-                sendNotification(notification);
+            } catch (JSONException e) {
+                Log.e(TAG, "onCreate: " + e.getMessage());
             }
+
+            System.out.println(notification);
+            sendNotification(notification);
+
         });
 
     }
@@ -186,6 +178,7 @@ public class SpeackToDriver extends AppCompatActivity {
         hashMap.put("sender", sender);
         hashMap.put("receiver", receiver);
         hashMap.put("message", message);
+        hashMap.put("token", myToken);
 
         reference.push().setValue(hashMap);
 
@@ -232,6 +225,7 @@ public class SpeackToDriver extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                 Message messages = dataSnapshot.getValue(Message.class);
+                assert messages != null;
                 if (messages.getSender().matches("Driver")) {
                     token = messages.getToken();
                 } else {

@@ -1,7 +1,7 @@
 package com.elblasy.navigation.models;
 
 public class Message {
-    private String message, title, token, sender;
+    private String message, title, token, sender, driverNumber;
     private boolean isSelf;
 
     public Message() {
@@ -13,6 +13,14 @@ public class Message {
         this.isSelf = isSelf;
         this.sender = sender;
         this.token = token;
+    }
+
+    public String getDriverNumber() {
+        return driverNumber;
+    }
+
+    public void setDriverNumber(String driverNumber) {
+        this.driverNumber = driverNumber;
     }
 
     public String getSender() {

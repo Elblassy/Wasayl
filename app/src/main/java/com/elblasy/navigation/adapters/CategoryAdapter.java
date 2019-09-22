@@ -71,21 +71,28 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
                     break;
                 case 2:
-                    CATEGORY = "pharmacy";
+                    CATEGORY = "bakery";
                     Log.i(TAG, "onBindViewHolder: " + CATEGORY);
 
                     break;
                 case 3:
-                    CATEGORY = "store";
+                    CATEGORY = "cafe";
                     Log.i(TAG, "onBindViewHolder: " + CATEGORY);
 
                     break;
                 case 4:
-                    CATEGORY = "bakery";
+                    CATEGORY = "clothing_store";
                     break;
                 case 5:
-                    CATEGORY = "cafe";
+                    CATEGORY = "book_store";
                     break;
+                case 6:
+                    CATEGORY = "electronics_store";
+                    break;
+                case 7:
+                    CATEGORY = "florist";
+                    break;
+
 
             }
         });

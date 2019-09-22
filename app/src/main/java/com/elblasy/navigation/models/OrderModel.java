@@ -3,46 +3,65 @@ package com.elblasy.navigation.models;
 public class OrderModel {
 
     private boolean active;
-    private String details, placeName, userName, address, token, phoneNumber, driverName;
+    private String details, placeName, userName, form, token, phoneNumber, to, driversID, status;
 
     public OrderModel() {
     }
 
-    public OrderModel(boolean active, String details, String address, String placeName,
-                      String userName, String token, String phoneNumber, String driverName) {
+    public OrderModel(boolean active, String details, String form, String placeName,
+                      String userName, String token, String phoneNumber, String to, String driversID, String status) {
         this.phoneNumber = phoneNumber;
         this.active = active;
         this.details = details;
-        this.address = address;
+        this.form = form;
         this.token = token;
         this.placeName = placeName;
         this.userName = userName;
-        this.driverName = driverName;
+        this.to = to;
+        this.driversID = driversID;
+        this.status = status;
     }
 
-    public String getDriverName() {
-        return driverName;
+    public String getStatus() {
+        return status;
     }
 
-    public void setDriverName(String driverName) {
-        this.driverName = driverName;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public void setPlaceName(String placeName) {
+        this.placeName = placeName;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public String getDriversID() {
+        return driversID;
+    }
+
+    public void setDriversID(String driversID) {
+        this.driversID = driversID;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public String getPlaceName() {
         return placeName;
     }
 
-    public void setPlaceName(String placeName) {
-        this.placeName = placeName;
-    }
 
     public String getUserName() {
         return userName;
@@ -50,6 +69,14 @@ public class OrderModel {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getForm() {
+        return form;
+    }
+
+    public void setForm(String form) {
+        this.form = form;
     }
 
     public String getToken() {
@@ -60,27 +87,19 @@ public class OrderModel {
         this.token = token;
     }
 
-    public String getDetails() {
-        return details;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public String getAddress() {
-        return address;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public String getTo() {
+        return to;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setTo(String to) {
+        this.to = to;
     }
 }

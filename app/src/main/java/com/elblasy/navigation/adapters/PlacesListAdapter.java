@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,12 +51,9 @@ public class PlacesListAdapter extends RecyclerView.Adapter<PlacesListAdapter.Vi
         Result result = results.get(position);
         holder.textViewName.setText(result.getName());
         holder.textViewAddress.setText(result.getVicinity());
-        holder.ratingBar.setNumStars(5);
 
         setAnimation(holder.cardView, position);
 
-        if (result.getRating() != null)
-            holder.ratingBar.setRating(result.getRating().intValue());
 
         Glide.with(context)
                 .load(result.getIcon())
@@ -99,7 +95,6 @@ public class PlacesListAdapter extends RecyclerView.Adapter<PlacesListAdapter.Vi
         private TextView textViewName;
         private TextView textViewAddress;
         private CircleImageView icon;
-        private RatingBar ratingBar;
         private CardView cardView;
 
         ViewHolder(@NonNull View itemView) {
@@ -107,7 +102,6 @@ public class PlacesListAdapter extends RecyclerView.Adapter<PlacesListAdapter.Vi
             textViewName = itemView.findViewById(R.id.textViewName);
             textViewAddress = itemView.findViewById(R.id.textViewAddress);
             icon = itemView.findViewById(R.id.icon);
-            ratingBar = itemView.findViewById(R.id.rating);
             cardView = itemView.findViewById(R.id.layout1);
 
         }

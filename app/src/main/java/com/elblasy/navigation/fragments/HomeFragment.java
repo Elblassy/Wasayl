@@ -28,7 +28,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.elblasy.navigation.R;
-import com.elblasy.navigation.activities.SpeackToDriver;
+import com.elblasy.navigation.activities.Order;
 import com.elblasy.navigation.adapters.CategoryAdapter;
 import com.elblasy.navigation.adapters.PlacesListAdapter;
 import com.elblasy.navigation.api.APIClient;
@@ -137,7 +137,6 @@ public class HomeFragment extends Fragment {
         recyclerView = rootView.findViewById(R.id.recyclerView);
         mRecyclerView = rootView.findViewById(R.id.recyclerView2);
 
-
         progressBar = rootView.findViewById(R.id.progressbar);
         progressBar.setVisibility(View.GONE);
         list = rootView.findViewById(R.id.text3);
@@ -145,7 +144,7 @@ public class HomeFragment extends Fragment {
         CardView cardView = rootView.findViewById(R.id.card);
 
         cardView.setOnClickListener(v -> {
-            Intent intent = new Intent(rootView.getContext(), SpeackToDriver.class);
+            Intent intent = new Intent(rootView.getContext(), Order.class);
             startActivity(intent);
         });
 
@@ -158,47 +157,34 @@ public class HomeFragment extends Fragment {
     private void initImageBitmaps() {
         System.out.println("onCreateView6666");
 
-        mImageUrls.add(R.drawable.fast_food);
+        mImageUrls.add(R.drawable.burger);
         mNames.add(getResources().getString(R.string.restaurant));
 
 
         mImageUrls.add(R.drawable.groceries);
         mNames.add(getResources().getString(R.string.groceries));
 
-        mImageUrls.add(R.drawable.medicine);
-        mNames.add(getResources().getString(R.string.medicine));
 
-
-        mImageUrls.add(R.drawable.giftbox);
-        mNames.add(getResources().getString(R.string.gifts));
-
-
-        mImageUrls.add(R.drawable.cupcake);
+        mImageUrls.add(R.drawable.bread);
         mNames.add(getResources().getString(R.string.bakery));
 
         mImageUrls.add(R.drawable.coffee);
         mNames.add(getResources().getString(R.string.cafe));
 
-        mImageUrls.add(R.drawable.fast_food);
-        mNames.add(getResources().getString(R.string.restaurant));
+        mImageUrls.add(R.drawable.clothes);
+        mNames.add(getResources().getString(R.string.clothe));
 
 
-        mImageUrls.add(R.drawable.groceries);
-        mNames.add(getResources().getString(R.string.groceries));
+        mImageUrls.add(R.drawable.book);
+        mNames.add(getResources().getString(R.string.book));
 
-        mImageUrls.add(R.drawable.medicine1);
-        mNames.add(getResources().getString(R.string.medicine));
-
-
-        mImageUrls.add(R.drawable.shopping);
-        mNames.add(getResources().getString(R.string.gifts));
+        mImageUrls.add(R.drawable.lamp);
+        mNames.add(getResources().getString(R.string.electric));
 
 
-        mImageUrls.add(R.drawable.cupcake);
-        mNames.add(getResources().getString(R.string.bakery));
+        mImageUrls.add(R.drawable.rose);
+        mNames.add(getResources().getString(R.string.florist));
 
-        mImageUrls.add(R.drawable.coffeecup);
-        mNames.add(getResources().getString(R.string.cafe));
 
         initRecyclerView();
     }

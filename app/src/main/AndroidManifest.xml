@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.elblasy.navigation">
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality.
-    -->
+
     <application
+        android:name=".Wasayl"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.elblasy.navigation.activities.SpeackToDriver" />
-
         <activity
-            android:name="com.elblasy.navigation.activities.Order"
-            android:windowSoftInputMode="stateUnchanged" />
-
+            android:name=".activities.TrackingOrder"
+            android:theme="@style/AppTheme"></activity>
         <activity
-            android:name="com.elblasy.navigation.activities.SplashScreen"
+            android:name=".activities.EditProfile"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".activities.ChooseDriver" />
+        <activity android:name=".activities.SpeackToDriver" />
+        <activity
+            android:name=".activities.Order"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.SplashScreen"
             android:screenOrientation="portrait"
             android:theme="@style/splash.screen">
             <intent-filter>
@@ -38,14 +40,15 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <activity
-            android:name="com.elblasy.navigation.activities.Home"
+            android:name=".activities.Home"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme" />
-
         <activity
-            android:name="com.elblasy.navigation.activities.Sign"
-            android:windowSoftInputMode="adjustResize" />
-        <activity android:name="com.elblasy.navigation.activities.VerifyPhoneNumber" />
+            android:name=".activities.Sign"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.VerifyPhoneNumber"
+            android:windowSoftInputMode="adjustPan" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -53,7 +56,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_stat_ic_notification" />
@@ -79,10 +81,10 @@
         </service>
     </application>
 
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

@@ -15,6 +15,22 @@ public class SplashScreen extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseAuth.AuthStateListener mAuthListner;
 
+//    @Override
+//    protected void onStart() {
+//        SharedPref sharedPref = new SharedPref(this);
+//        sharedPref.setPrefLang("ar");
+//        String lan = sharedPref.getSessionValue("Language");
+//        Locale locale = new Locale(lan);
+//        Locale.setDefault(locale);
+//        Configuration config = new Configuration();//get Configuration
+//        config.locale = locale;//set config locale as selected locale
+//        this.getResources().updateConfiguration(config, this.getResources().getDisplayMetrics());
+//        invalidateOptionsMenu();
+//
+//        super.onStart();
+//    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,16 +42,15 @@ public class SplashScreen extends AppCompatActivity {
 
 
         mAuthListner = firebaseAuth -> {
-            if (firebaseAuth.getCurrentUser()!=null)
-            {
+            if (firebaseAuth.getCurrentUser() != null) {
                 startActivity(new Intent(SplashScreen.this, Home.class));
                 finish();
-            }else {
+            } else {
                 startActivity(new Intent(SplashScreen.this, Sign.class));
                 finish();
             }
         };
 
-        new Handler().postDelayed(() -> auth.addAuthStateListener(mAuthListner),3000);
+        new Handler().postDelayed(() -> auth.addAuthStateListener(mAuthListner), 3000);
     }
 }

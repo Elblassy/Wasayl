@@ -1,48 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.elblasy.navigation.activities.Order">
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Orders"
-        android:textColor="@color/colorAccent2"
-        android:textSize="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ListView
-        android:id="@+id/list_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text"
-        android:background="@drawable/custom_order"
-        android:layout_margin="12dp"
-
-        >
-
-    </ListView>
-
-    <TextView
-        android:id="@+id/text_cobon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_marginStart="8dp"
-        android:text="add Cobon"
-        android:textColor="@color/colorAccent2"
-        android:textSize="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list_item" />
 
     <Button
         android:id="@+id/place_order"
@@ -51,11 +14,11 @@
         android:layout_margin="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/button"
-        android:text="Place order"
+        android:layout_alignParentBottom="true"
         android:textColor="#fff"
         android:textSize="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="8dp" />
+        android:text="@string/orders" />
+
 
     <ProgressBar
         android:id="@+id/progressbar"
@@ -63,12 +26,124 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/place_order"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list_item" />
+        android:layout_centerVertical="true"
+        android:elevation="2dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_margin="12dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/orders"
+        android:textColor="@color/colorAccent2"
+        android:textSize="32dp" />
+
+    <TextView
+        android:id="@+id/text_orders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cardView"
+        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/details_of_order"
+        android:textColor="@color/colorAccent2"
+        android:textSize="24dp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/text"
+        android:layout_margin="20dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:elevation="35dp"
+        app:cardCornerRadius="25dp"
+        app:cardPreventCornerOverlap="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="4dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/to"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/edite_sign"
+                android:drawableStart="@drawable/ic_home_24dp"
+                android:drawablePadding="4dp"
+                android:hint="@string/from"
+                android:inputType="text"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textAlignment="viewStart" />
+
+            <EditText
+                android:id="@+id/from"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/edite_sign"
+                android:drawableStart="@drawable/ic_local_grocery_store_black_24dp"
+                android:drawablePadding="4dp"
+                android:hint="@string/to"
+                android:inputType="text"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textAlignment="viewStart" />
+
+            <EditText
+                android:id="@+id/place_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/edite_sign"
+                android:drawableStart="@drawable/ic_store_24dp"
+                android:drawablePadding="4dp"
+                android:hint="@string/place_name"
+                android:inputType="text"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textAlignment="viewStart" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/place_order"
+        android:layout_below="@id/text_orders"
+        android:layout_margin="20dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:elevation="35dp"
+        app:cardCornerRadius="25dp"
+        app:cardPreventCornerOverlap="false">
+
+        <ListView
+            android:id="@+id/list_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="12dp" />
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

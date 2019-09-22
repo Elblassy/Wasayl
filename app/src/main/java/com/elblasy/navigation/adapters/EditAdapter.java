@@ -59,7 +59,7 @@ public class EditAdapter extends BaseAdapter {
             //ViewHolder object to contain myadapter.xml elements
             holder = new ViewHolder();
 
-            holder.number = v.findViewById(R.id.editText2);
+            //holder.number = v.findViewById(R.id.editText2);
             holder.details = v.findViewById(R.id.editText1);
 
             v.setTag(holder);
@@ -76,11 +76,11 @@ public class EditAdapter extends BaseAdapter {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (listforview.size() < 7) {
+                if (listforview.size() < 6) {
                     if (count == 1 && check.get(position)) {
                         EditText editText = new EditText(context);
                         editText.setTag(position);
-                        listforview.add(editText);
+                        listforview.add(position + 1, editText);
                         check.set(position, false);
                         check.add(true);
                         notifyDataSetChanged();
@@ -91,8 +91,7 @@ public class EditAdapter extends BaseAdapter {
 
             @Override
             public void afterTextChanged(Editable s) {
-                holder.number.setFocusable(false);
-                holder.details.setFocusable(true);
+
             }
         });
 
@@ -100,8 +99,7 @@ public class EditAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
-        EditText number;
-        EditText details;
+        EditText number, details;
 
     }
 }

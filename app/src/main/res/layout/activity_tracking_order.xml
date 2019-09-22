@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.TrackingOrder">
+
+    <Button
+        android:id="@+id/speak_driver"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button"
+        android:padding="8dp"
+        android:text="Speak with driver"
+        android:textColor="#fff"
+        android:textSize="8pt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button"
+        android:text="Rate driver"
+        android:textColor="#fff"
+        android:textSize="8pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/speak_driver"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Order Status"
+        android:textColor="#000"
+        android:textSize="12pt"
+        app:layout_constraintStart_toStartOf="@+id/circle_way_to_place"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="On his way to take the order"
+        android:textColor="#000"
+        android:textSize="10pt"
+        app:layout_constraintBottom_toBottomOf="@+id/circle_way_to_place"
+        app:layout_constraintStart_toEndOf="@+id/circle_way_to_place"
+        app:layout_constraintTop_toTopOf="@+id/circle_way_to_place" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="On his way to your place"
+        android:textColor="#000"
+        android:textSize="10pt"
+        app:layout_constraintBottom_toBottomOf="@+id/on_way_to_home"
+        app:layout_constraintStart_toEndOf="@+id/on_way_to_home"
+        app:layout_constraintTop_toTopOf="@+id/on_way_to_home" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Delivered"
+        android:textColor="#000"
+        android:textSize="10pt"
+        app:layout_constraintBottom_toBottomOf="@+id/delivered"
+        app:layout_constraintStart_toEndOf="@+id/delivered"
+        app:layout_constraintTop_toTopOf="@+id/delivered" />
+
+    <View
+        android:layout_width="120dp"
+        android:layout_height="2dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintStart_toStartOf="@+id/circle_way_to_place"
+        app:layout_constraintTop_toBottomOf="@id/text" />
+
+
+    <View
+        android:id="@+id/circle_way_to_place"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/strock_circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text" />
+
+    <View
+        android:id="@+id/straight_line1"
+        android:layout_width="2dp"
+        android:layout_height="50dp"
+        android:background="#000"
+
+        app:layout_constraintEnd_toEndOf="@+id/circle_way_to_place"
+        app:layout_constraintStart_toStartOf="@+id/circle_way_to_place"
+        app:layout_constraintTop_toBottomOf="@+id/circle_way_to_place" />
+
+    <View
+        android:id="@+id/on_way_to_home"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/strock_circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/straight_line1" />
+
+    <View
+        android:id="@+id/straight_line2"
+        android:layout_width="2dp"
+        android:layout_height="50dp"
+        android:background="#000"
+        app:layout_constraintEnd_toEndOf="@+id/on_way_to_home"
+        app:layout_constraintStart_toStartOf="@+id/on_way_to_home"
+        app:layout_constraintTop_toBottomOf="@+id/on_way_to_home" />
+
+    <View
+        android:id="@+id/delivered"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/strock_circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/straight_line2" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

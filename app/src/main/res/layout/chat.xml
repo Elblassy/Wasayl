@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/constraint">
+    android:id="@+id/constraint"
+    android:layoutDirection="ltr">
 
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
+        android:layout_margin="6dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="4dp">
@@ -21,9 +22,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_weight="4"
+            android:layout_gravity="left"
             android:background="@drawable/edite_sign"
             android:padding="4dp"
+            android:layout_weight="7"
             android:hint="write here" />
 
         <ImageView
@@ -31,34 +33,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_gravity="right"
             android:src="@drawable/ic_send_black_24dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="4dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="4dp">
-
-        <Button
-            android:id="@+id/agree"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Agree"
-            android:textSize="9pt" />
-
-        <Button
-            android:id="@+id/show"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Show profile"
-            android:textSize="9pt" />
 
     </LinearLayout>
 
@@ -75,8 +51,8 @@
         android:scrollbarStyle="outsideOverlay"
         android:stackFromBottom="true"
         android:transcriptMode="normal"
-        android:listSelector="@android:color/holo_blue_light"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2" />
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout" />
 
+    <!--    android:listSelector="@android:color/holo_blue_light"-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

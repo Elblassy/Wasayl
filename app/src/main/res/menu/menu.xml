@@ -17,7 +17,6 @@
     <!-- "Locate me", should appear as action button if possible -->
     <item
         android:id="@+id/action_geolocate"
-        android:icon="@drawable/ic_geolocate"
         android:title="action_geolocate"
         app:showAsAction="always|withText" />
 </menu>

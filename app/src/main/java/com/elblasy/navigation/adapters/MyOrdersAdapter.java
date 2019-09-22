@@ -12,7 +12,8 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 
 import com.elblasy.navigation.R;
-import com.elblasy.navigation.activities.SpeackToDriver;
+import com.elblasy.navigation.activities.ChooseDriver;
+import com.elblasy.navigation.activities.TrackingOrder;
 import com.elblasy.navigation.models.OrderModel;
 
 import java.util.ArrayList;
@@ -70,11 +71,17 @@ public class MyOrdersAdapter extends BaseAdapter {
             holder = (ViewHolder) v.getTag();
         }
 
-        holder.address.setText(orders.getAddress());
+        holder.address.setText(orders.getForm());
         holder.details.setText(orders.getPlaceName());
         holder.card.setOnClickListener(v -> {
             String token = orders.getToken();
-            Intent intent = new Intent(context, SpeackToDriver.class);
+            Intent intent;
+
+            if (orders.getDriversID().equals("unknown"))
+                intent = new Intent(context, ChooseDriver.class);
+            else
+                intent = new Intent(context, TrackingOrder.class);
+
             intent.putExtra("token", token);
             intent.putExtra("userName", orders.getUserName());
             intent.putExtra("phoneNumber", orders.getPhoneNumber());
