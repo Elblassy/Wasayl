@@ -21,6 +21,7 @@ import com.elblasy.navigation.R;
 import com.elblasy.navigation.SharedPref;
 import com.elblasy.navigation.fragments.HomeFragment;
 import com.elblasy.navigation.fragments.MyOrdersFragment;
+import com.elblasy.navigation.fragments.PastOrderFragment;
 import com.elblasy.navigation.fragments.SettingFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -165,11 +166,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             toolbar.setTitle(getResources().getString(R.string.menu_orders));
             loadFragment(new MyOrdersFragment());
         } else if (id == R.id.nav_history) {
+            toolbar.setTitle(getResources().getString(R.string.menu_history));
+            loadFragment(new PastOrderFragment());
 
         } else if (id == R.id.nav_tools) {
             toolbar.setTitle(getResources().getString(R.string.menu_settings));
             loadFragment(new SettingFragment());
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_about_us) {
 
         } else if (id == R.id.nav_send) {
 
