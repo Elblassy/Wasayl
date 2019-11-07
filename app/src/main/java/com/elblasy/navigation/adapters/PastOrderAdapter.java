@@ -70,7 +70,7 @@ public class PastOrderAdapter extends BaseAdapter {
             holder = (ViewHolder) v.getTag();
         }
 
-        holder.address.setText(orders.getForm());
+        holder.address.setText(orders.getFrom());
         holder.details.setText(orders.getPlaceName());
         holder.orderAgain.setOnClickListener(v -> {
             Intent intent = new Intent(context, Order.class);

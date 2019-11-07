@@ -17,11 +17,14 @@
     <string name="nav_header_desc">هيدر</string>
     <string name="action_settings">الاعددات</string>
     <string name="action_sign_out">تسجيل الخروج</string>
+
     <string name="any_place">مش لاقى المكان ؟</string>
     <string name="move_any_thing">أنقل أي حاجة فى أي وقت لأي مكان</string>
     <string name="category">فئات</string>
     <string name="list_of_places">قائمة الاماكن</string>
-
+    <string name="submit">التالي</string>
+    <string name="order_again">اطلبه تاني</string>
+    <string name="see_news">متابعة تفاصيل عرضى</string>
 
     <string name="communicate">التواصل</string>
 
@@ -30,7 +33,7 @@
     <string name="menu_history">الطلبات السابقة</string>
     <string name="menu_settings">الأعدادات</string>
     <string name="menu_about_us">معلومات عنا</string>
-    <string name="menu_send">ارسال</string>
+    <string name="menu_send">العمل كمندوب توصيل</string>
 
     <string name="restaurant">مطاعم</string>
     <string name="groceries">سوبر ماركت</string>
@@ -55,8 +58,10 @@
     <string name="choose_language">اختر لغة التطبيق</string>
 
     <!-- location in order -->
-    <string name="from">نقطة الإستلام</string>
-    <string name="to">نقطة التوصيل</string>
+    <string name="from">عنوان الحاجة الى انت عايزها</string>
+    <string name="to">العنوان الى هنوصلك الحاجة ليه</string>
+    <string name="place_name">اسم المكان</string>
+
 
     <!-- Toast -->
     <string name="valid_location">من فضلك ادخل عنوان صحيح</string>
@@ -69,37 +74,61 @@
     <string name="details_of_order">تفاصيل الاوردر</string>
 
 
-    <string-array name="Cities">
-        <item>القاهرة</item>
-        <item>الأسكندرية</item>
-        <item>الجيزة</item>
-        <item>الإسماعيلية</item>
-        <item>بورسعيد</item>
-        <item>السويس</item>
-        <item>سوهاج</item>
-        <item>الأقصر</item>
-        <item>المنصورة</item>
-        <item>المحلة الكبرى</item>
-        <item>طنطا</item>
-        <item>أسيوط</item>
-        <item>الفيوم</item>
-        <item>الزقازيق</item>
-        <item>أسوان</item>
-        <item>دمياط</item>
-        <item>دمنهور</item>
-        <item>المنيا</item>
-        <item>بني سويف</item>
-        <item>قنا</item>
-        <item>الغردقة</item>
-        <item>مدينة السادس من أكتوبر</item>
-        <item>شبين الكوم</item>
-        <item>بنها</item>
-        <item>كفر الشيخ</item>
-        <item>العريش</item>
-        <item>ملوى</item>
-        <item>مدينة العاشر من رمضان</item>
-        <item>بلبيس</item>
-        <item>مرسى مطروح</item>
+    <string name="save_changes">حفظ التعديلات</string>
+
+    <!-- alert dialog -->
+    <string name="sure_to_save">هل انت متأكد من حفظ هذه التغيرات ؟</string>
+    <string name="choose_driver">اختيار المندوب</string>
+    <string name="sure_to_choose">هل انت متأكد من اختيار هذا السائق لتوصيل طلبك ؟</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="rate">تقيم السائق</string>
+
+    <string name="speak_to_driver">تحدث مع السائق</string>
+    <string name="no_offers">لا يوجد عروض الأن انتظر قليلًا</string>
+    <string name="on_his_way">فى طريقه لأخذ طلبك</string>
+    <string name="order_status">تفاصيل طلبك</string>
+    <string name="on_way_to_you">فى طريقه إليك</string>
+    <string name="deliverd">تم التوصيل</string>
+    <string name="choose_kind">اختار نوع اوردرك</string>
+    <string name="move_heavy">عايز تنقل حاجة تقيلة</string>
+    <string name="move_light">عايز تنقل او تشتري حاجة خفيفة</string>
+    <string-array name="fading">
+        <item>أنقل أي حاجة فى أي وقت لأي مكان</item>
+        <item>أضغط هنا!</item>
     </string-array>
+
+    <!--    <string-array name="Cities">-->
+    <!--        <item>القاهرة</item>-->
+    <!--        <item>الأسكندرية</item>-->
+    <!--        <item>الجيزة</item>-->
+    <!--        <item>الإسماعيلية</item>-->
+    <!--        <item>بورسعيد</item>-->
+    <!--        <item>السويس</item>-->
+    <!--        <item>سوهاج</item>-->
+    <!--        <item>الأقصر</item>-->
+    <!--        <item>المنصورة</item>-->
+    <!--        <item>المحلة الكبرى</item>-->
+    <!--        <item>طنطا</item>-->
+    <!--        <item>أسيوط</item>-->
+    <!--        <item>الفيوم</item>-->
+    <!--        <item>الزقازيق</item>-->
+    <!--        <item>أسوان</item>-->
+    <!--        <item>دمياط</item>-->
+    <!--        <item>دمنهور</item>-->
+    <!--        <item>المنيا</item>-->
+    <!--        <item>بني سويف</item>-->
+    <!--        <item>قنا</item>-->
+    <!--        <item>الغردقة</item>-->
+    <!--        <item>مدينة السادس من أكتوبر</item>-->
+    <!--        <item>شبين الكوم</item>-->
+    <!--        <item>بنها</item>-->
+    <!--        <item>كفر الشيخ</item>-->
+    <!--        <item>العريش</item>-->
+    <!--        <item>ملوى</item>-->
+    <!--        <item>مدينة العاشر من رمضان</item>-->
+    <!--        <item>بلبيس</item>-->
+    <!--        <item>مرسى مطروح</item>-->
+    <!--    </string-array>-->
 
 </resources>

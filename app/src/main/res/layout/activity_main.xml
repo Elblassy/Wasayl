@@ -73,9 +73,10 @@
                 android:background="@drawable/sign_button"
                 android:elevation="10dp"
                 android:padding="8dp"
-                android:text="Submit"
+                android:text="@string/submit"
                 android:textColor="#FFF"
                 android:textSize="30dp" />
+
 
             <EditText
                 android:id="@+id/phone_number"
@@ -109,17 +110,6 @@
                 android:textAlignment="viewStart" />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="12dp"
-                android:text="@string/sign_in"
-                android:textColor="#000"
-                android:textSize="12pt" />
-
-
             <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
                 android:id="@+id/spinnerCities"
                 android:layout_width="match_parent"
@@ -130,7 +120,15 @@
                 android:hint="@string/city"
                 android:padding="12dp" />
 
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp"
+                android:text="@string/sign_in"
+                android:textColor="#000"
+                android:textSize="12pt" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

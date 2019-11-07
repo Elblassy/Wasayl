@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -39,6 +40,7 @@ public class ChooseDriver extends AppCompatActivity {
         LocaleUtils.updateConfig(this);
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,7 @@ public class ChooseDriver extends AppCompatActivity {
 
         //toolbar define
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Choose Driver");
+        toolbar.setTitle(getResources().getString(R.string.choose_driver));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -63,6 +65,29 @@ public class ChooseDriver extends AppCompatActivity {
         String token = intent1.getStringExtra("token");
 
         Log.i("placeName", placeName);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getResources().getString(R.string.choose_driver));
+        builder.setMessage(getResources().getString(R.string.sure_to_choose));
+        builder.setCancelable(true);
+
+        builder.setPositiveButton(
+                getResources().getString(R.string.yes),
+                (dialog, id) -> {
+                    Intent intent = new Intent(ChooseDriver.this, TrackingOrder.class);
+                    intent.putExtra("placeName", placeName);
+                    intent.putExtra("phoneNumber", mobile);
+                    intent.putExtra("token", token);
+
+                    startActivity(intent);
+                    finish();
+                });
+
+        builder.setNegativeButton(
+                getResources().getString(R.string.no),
+                (dialog, id) -> dialog.cancel());
+
+
 
         //recyclerView
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
@@ -94,14 +119,10 @@ public class ChooseDriver extends AppCompatActivity {
             db.addValueEventListener(valueEventListener);
             db2.addValueEventListener(valueEventListener);
 
-            Intent intent = new Intent(ChooseDriver.this, TrackingOrder.class);
-            intent.putExtra("placeName", placeName);
-            intent.putExtra("phoneNumber", mobile);
-            intent.putExtra("token", token);
-
-            startActivity(intent);
-
+            AlertDialog alert = builder.create();
+            alert.show();
         });
+
 
         RecyclerView.LayoutManager layoutManager =
                 new GridLayoutManager(this, 2);

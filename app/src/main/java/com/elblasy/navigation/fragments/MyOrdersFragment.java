@@ -81,7 +81,7 @@ public class MyOrdersFragment extends Fragment {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
+                ordersAdapter.notifyDataSetChanged();
             }
 
             @Override

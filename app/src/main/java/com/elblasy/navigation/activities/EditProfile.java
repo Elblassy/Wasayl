@@ -31,7 +31,7 @@ public class EditProfile extends AppCompatActivity {
 
         //toolbar define
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Edit Profile");
+        toolbar.setTitle(getResources().getString(R.string.edit_profile));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -63,12 +63,12 @@ public class EditProfile extends AppCompatActivity {
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Save Change");
-        builder.setMessage("Are you sure you want to save this changes ?");
+        builder.setTitle(getResources().getString(R.string.save_changes));
+        builder.setMessage(getResources().getString(R.string.sure_to_save));
         builder.setCancelable(true);
 
         builder.setPositiveButton(
-                "Yes",
+                getResources().getString(R.string.yes),
                 (dialog, id) -> {
                     sharedPref.setPreferName(userName.getText().toString());
                     sharedPref.setPrefPhoneNumber(mobile.getText().toString());
@@ -81,7 +81,7 @@ public class EditProfile extends AppCompatActivity {
                 });
 
         builder.setNegativeButton(
-                "No",
+                getResources().getString(R.string.no),
                 (dialog, id) -> dialog.cancel());
 
 

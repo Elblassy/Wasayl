@@ -63,10 +63,7 @@ public class EditAdapter extends BaseAdapter {
             holder.details = v.findViewById(R.id.editText1);
 
             v.setTag(holder);
-        } else {
-            holder = (ViewHolder) v.getTag();
         }
-
 
         holder.details.addTextChangedListener(new TextWatcher() {
             @Override

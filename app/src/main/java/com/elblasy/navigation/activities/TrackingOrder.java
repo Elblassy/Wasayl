@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.elblasy.navigation.LocaleUtils;
 import com.elblasy.navigation.R;
 import com.elblasy.navigation.models.OrderModel;
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +20,11 @@ import com.google.firebase.database.ValueEventListener;
 public class TrackingOrder extends AppCompatActivity {
 
     DatabaseReference db;
+
+    public TrackingOrder() {
+        LocaleUtils.updateConfig(this);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

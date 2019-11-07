@@ -62,19 +62,7 @@
 
         </RelativeLayout>
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            android:background="@drawable/seach_view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
 
-        </androidx.appcompat.widget.SearchView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card"
@@ -83,11 +71,11 @@
             android:layout_margin="12dp"
             android:clipChildren="false"
             android:clipToPadding="false"
-            android:elevation="8dp"
+            android:elevation="20dp"
             app:cardCornerRadius="20dp"
             app:cardPreventCornerOverlap="false"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/searchView">
+            app:layout_constraintTop_toTopOf="parent">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -98,19 +86,22 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="8dp"
+                    android:layout_alignParentLeft="true"
                     android:src="@drawable/wasayl" />
 
-                <TextView
+                <com.tomer.fadingtextview.FadingTextView
                     android:id="@+id/text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/image"
-                    android:text="@string/move_any_thing"
+                    android:layout_toRightOf="@+id/image"
+                    android:gravity="center"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccent2"
                     android:layout_marginEnd="8dp"
-                    android:textSize="10pt" />
+                    android:textSize="10pt"
+                    app:texts="@array/fading"
+                    app:timeout="1000" />
 
             </RelativeLayout>
 

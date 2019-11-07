@@ -13,8 +13,9 @@
         android:layout_below="@+id/card"
         android:layout_centerHorizontal="true"
         android:gravity="center"
+        android:maxLines="1"
         android:text="restaurant"
-        android:textSize="24dp" />
+        android:textSize="23dp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"

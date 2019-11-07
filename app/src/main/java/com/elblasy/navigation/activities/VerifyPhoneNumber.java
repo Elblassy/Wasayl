@@ -151,7 +151,7 @@ public class VerifyPhoneNumber extends AppCompatActivity {
                         Intent intent = new Intent(VerifyPhoneNumber.this, Home.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         sharedPref.setPreferName(name);
-                        sharedPref.setPrefPhoneNumber(mobile);
+                        sharedPref.setPrefPhoneNumber("+2" + mobile);
                         sharedPref.setPrefCity(city);
                         startActivity(intent);
                         finish();

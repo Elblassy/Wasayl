@@ -46,6 +46,11 @@ public class SharedPref {
         editor.apply();
     }
 
+    public void setPrefToken(String token) {
+        editor.putString("token", token);
+        editor.apply();
+    }
+
     public void checkFirstLaunch() {
 
         if (pref.getBoolean("firstrun", true)) {

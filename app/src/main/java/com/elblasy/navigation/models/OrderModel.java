@@ -3,23 +3,43 @@ package com.elblasy.navigation.models;
 public class OrderModel {
 
     private boolean active;
-    private String details, placeName, userName, form, token, phoneNumber, to, driversID, status;
+    private String details, placeName, userName, from, token, phoneNumber, to,
+            driversID, status, pushID, kindOfOrder;
 
     public OrderModel() {
     }
 
-    public OrderModel(boolean active, String details, String form, String placeName,
-                      String userName, String token, String phoneNumber, String to, String driversID, String status) {
+    public OrderModel(boolean active, String details, String from, String placeName,
+                      String userName, String token, String phoneNumber, String to, String driversID,
+                      String status, String pushID, String kindOfOrder) {
         this.phoneNumber = phoneNumber;
         this.active = active;
         this.details = details;
-        this.form = form;
+        this.from = from;
         this.token = token;
         this.placeName = placeName;
         this.userName = userName;
         this.to = to;
         this.driversID = driversID;
         this.status = status;
+        this.pushID = pushID;
+        this.kindOfOrder = kindOfOrder;
+    }
+
+    public String getKindOfOrder() {
+        return kindOfOrder;
+    }
+
+    public void setKindOfOrder(String kindOfOrder) {
+        this.kindOfOrder = kindOfOrder;
+    }
+
+    public String getPushID() {
+        return pushID;
+    }
+
+    public void setPushID(String pushID) {
+        this.pushID = pushID;
     }
 
     public String getStatus() {
@@ -71,12 +91,12 @@ public class OrderModel {
         this.userName = userName;
     }
 
-    public String getForm() {
-        return form;
+    public String getFrom() {
+        return from;
     }
 
-    public void setForm(String form) {
-        this.form = form;
+    public void setFrom(String from) {
+        this.from = from;
     }
 
     public String getToken() {

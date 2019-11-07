@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.elblasy.navigation.LocaleUtils;
 import com.elblasy.navigation.R;
+import com.elblasy.navigation.SharedPref;
 import com.elblasy.navigation.adapters.EditAdapter;
 import com.elblasy.navigation.models.Message;
 import com.elblasy.navigation.models.MySingleton;
@@ -54,6 +55,7 @@ public class Order extends AppCompatActivity {
     String fcmToken;
     EditText recieve, home, placeNameEdit;
     String userKey;
+    String kindOfOrder;
     private DatabaseReference mdatabase, ordersDatabase, reference;
 
     public Order() {
@@ -69,11 +71,16 @@ public class Order extends AppCompatActivity {
         if (intent.hasExtra("Address") && intent.hasExtra("place_name")) {
             address = intent.getStringExtra("Address");
             placeName = intent.getStringExtra("place_name");
+
         } else {
             address = "";
             placeName = "";
         }
 
+        if (intent.hasExtra("kind_of_order"))
+            kindOfOrder = intent.getStringExtra("kind_of_order");
+        else
+            kindOfOrder = "light";
 
         home = findViewById(R.id.to);
         recieve = findViewById(R.id.from);
@@ -95,6 +102,7 @@ public class Order extends AppCompatActivity {
         listView = findViewById(R.id.list_item);
         editAdapter = new EditAdapter(this);
         listView.setAdapter(editAdapter);
+
 
         FirebaseMessaging.getInstance().subscribeToTopic("wasaylclient");
 
@@ -118,8 +126,9 @@ public class Order extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), R.string.valid_location, Toast.LENGTH_LONG).show();
                 return;
             }
-            details = new StringBuilder();
             progressBar.setVisibility(View.VISIBLE);
+
+            details = new StringBuilder();
 
             for (int i = 0; i < listView.getChildCount() - 1; i++) {
                 View view = listView.getChildAt(i);
@@ -129,16 +138,18 @@ public class Order extends AppCompatActivity {
                 details.append(et.getText().toString()).append(" ");
             }
 
+            String pushID = mdatabase.child(userKey).push().getKey();
+
             OrderModel orderModel = new OrderModel(active, details.toString(), recieve.getText().toString(),
                     placeNameEdit.getText().toString(), "Elblasy",
-                    fcmToken, userKey, home.getText().toString(), "unknown", "nothing");
+                    fcmToken, userKey, home.getText().toString(), "unknown", "nothing", pushID, kindOfOrder);
 
             assert userKey != null;
-            mdatabase.child(userKey).push().setValue(orderModel);
+            mdatabase.child(userKey).child(pushID).setValue(orderModel);
             ordersDatabase.child(placeNameEdit.getText().toString() + userKey).setValue(orderModel);
 
 
-            TOPIC = "/topics/portsaid"; //topic must match with what the receiver subscribed to
+            TOPIC = "/topics/" + SharedPref.getSessionValue("City") + "/" + kindOfOrder; //topic must match with what the receiver subscribed to
             NOTIFICATION_TITLE = getResources().getString(R.string.notification_title);
             NOTIFICATION_MESSAGE = details.toString();
 

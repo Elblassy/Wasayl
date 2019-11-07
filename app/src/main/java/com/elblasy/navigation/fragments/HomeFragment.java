@@ -28,7 +28,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.elblasy.navigation.R;
-import com.elblasy.navigation.activities.Order;
+import com.elblasy.navigation.activities.ChooseVehicle;
 import com.elblasy.navigation.adapters.CategoryAdapter;
 import com.elblasy.navigation.adapters.PlacesListAdapter;
 import com.elblasy.navigation.api.APIClient;
@@ -144,7 +144,7 @@ public class HomeFragment extends Fragment {
         CardView cardView = rootView.findViewById(R.id.card);
 
         cardView.setOnClickListener(v -> {
-            Intent intent = new Intent(rootView.getContext(), Order.class);
+            Intent intent = new Intent(rootView.getContext(), ChooseVehicle.class);
             startActivity(intent);
         });
 

@@ -3,9 +3,9 @@ package com.elblasy.navigation.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -19,12 +19,12 @@ import androidx.fragment.app.FragmentTransaction;
 import com.elblasy.navigation.LocaleUtils;
 import com.elblasy.navigation.R;
 import com.elblasy.navigation.SharedPref;
+import com.elblasy.navigation.fragments.AboutUsFragment;
 import com.elblasy.navigation.fragments.HomeFragment;
 import com.elblasy.navigation.fragments.MyOrdersFragment;
 import com.elblasy.navigation.fragments.PastOrderFragment;
 import com.elblasy.navigation.fragments.SettingFragment;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 import com.infideap.drawerbehavior.AdvanceDrawerLayout;
 
 import org.jetbrains.annotations.NotNull;
@@ -116,42 +116,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             drawer.closeDrawer(GravityCompat.START);
         } else {
             //to make this is main activity and don't back to sign in
-            Intent startMain = new Intent(Intent.ACTION_MAIN);
+            Intent startMain = new Intent(Home.this, Home.class);
             startMain.addCategory(Intent.CATEGORY_HOME);
             startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(startMain);
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
 
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent intent = new Intent(Home.this, Order.class);
-            startActivity(intent);
-        } else if (id == R.id.action_sign_out) {
-            FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(Home.this, Sign.class);
-            startActivity(intent);
-        }
-
-        return true;
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NotNull MenuItem item) {
         // Handle navigation view item clicks here.
@@ -173,9 +145,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             toolbar.setTitle(getResources().getString(R.string.menu_settings));
             loadFragment(new SettingFragment());
         } else if (id == R.id.nav_about_us) {
-
+            toolbar.setTitle(getResources().getString(R.string.menu_about_us));
+            loadFragment(new AboutUsFragment());
         } else if (id == R.id.nav_send) {
-
+            final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            } catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+            }
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
