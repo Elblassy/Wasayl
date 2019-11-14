@@ -1,14 +1,9 @@
 package com.elblasy.navigation.fragments;
 
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +11,10 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,21 +24,15 @@ import com.elblasy.navigation.R;
 import com.elblasy.navigation.activities.ChooseVehicle;
 import com.elblasy.navigation.adapters.CategoryAdapter;
 import com.elblasy.navigation.adapters.PlacesListAdapter;
-import com.elblasy.navigation.api.APIClient;
-import com.elblasy.navigation.api.GoogleMapAPI;
-import com.elblasy.navigation.models.PlacesResults;
-import com.elblasy.navigation.models.Result;
-
-import org.jetbrains.annotations.NotNull;
+import com.elblasy.navigation.models.PlaceModel;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import static android.content.Context.LOCATION_SERVICE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,66 +41,20 @@ public class HomeFragment extends Fragment {
 
     private ArrayList<Integer> mImageUrls;
     private ArrayList<String> mNames;
-    private GoogleMapAPI googleMapAPI;
 
     private LocationManager locationManager;
-    private List<Result> results;
+    private List<PlaceModel> results;
     private PlacesListAdapter placesListAdapter;
     private CategoryAdapter category;
     private ProgressBar progressBar;
-    private TextView list;
+    private TextView listText;
     private View rootView;
 
-    //location listener to get list of places
-    LocationListener locationListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(Location location) {
-            String key = getText(R.string.google_maps_key).toString();
-            String currentLocation = location.getLatitude() + "," + location.getLongitude();
-            int radius = 500;
-            Log.i("HOME", "onLocationChanged: " + CategoryAdapter.CATEGORY);
-
-            googleMapAPI = APIClient.getClient().create(GoogleMapAPI.class);
-            googleMapAPI.getNearBy(currentLocation, radius, CategoryAdapter.CATEGORY, CategoryAdapter.CATEGORY, key).enqueue(new Callback<PlacesResults>() {
-                @Override
-                public void onResponse(@NotNull Call<PlacesResults> call, @NotNull Response<PlacesResults> response) {
-                    if (response.isSuccessful()) {
-                        assert response.body() != null;
-                        results.addAll(response.body().getResults());
-                        placesListAdapter.notifyDataSetChanged();
-                        progressBar.setVisibility(View.GONE);
-                        list.setVisibility(View.GONE);
-
-                        Log.e("main", results.toString());
-                    } else {
-                        Toast.makeText(rootView.getContext(), "Failed", Toast.LENGTH_LONG).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(@NotNull Call<PlacesResults> call, @NotNull Throwable t) {
-                    Toast.makeText(rootView.getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            });
-        }
-
-        @Override
-        public void onStatusChanged(String s, int i, Bundle bundle) {
-
-        }
-
-        @Override
-        public void onProviderEnabled(String s) {
-
-        }
-
-        @Override
-        public void onProviderDisabled(String s) {
-
-        }
-    };
     private RecyclerView recyclerView;
     private RecyclerView mRecyclerView;
+    private DatabaseReference db;
+    private String categoryText = "";
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -139,7 +80,8 @@ public class HomeFragment extends Fragment {
 
         progressBar = rootView.findViewById(R.id.progressbar);
         progressBar.setVisibility(View.GONE);
-        list = rootView.findViewById(R.id.text3);
+        listText = rootView.findViewById(R.id.text3);
+
 
         CardView cardView = rootView.findViewById(R.id.card);
 
@@ -203,31 +145,87 @@ public class HomeFragment extends Fragment {
             System.out.println("initRecyclerView22");
             System.out.println(position + "  HOMEClick");
             progressBar.setVisibility(View.VISIBLE);
-            list.setVisibility(View.VISIBLE);
-
+            listText.setVisibility(View.VISIBLE);
             placesListAdapter.clear();
 
+            switch (position) {
+                case 0:
+                    categoryText = "restaurant";
+                    break;
+                case 1:
+                    categoryText = "supermarket";
 
-            if (ContextCompat.checkSelfPermission(rootView.getContext(),
-                    Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                    || ContextCompat.checkSelfPermission(rootView.getContext(),
-                    Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    break;
+                case 2:
+                    categoryText = "bakery";
 
-                locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
-                locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER,
-                        locationListener, null);
-            } else {
-                if (ContextCompat.checkSelfPermission(rootView.getContext(),
-                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(getActivity(),
-                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 12);
-                }
-                if (ContextCompat.checkSelfPermission(rootView.getContext(),
-                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(getActivity(),
-                            new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 13);
-                }
+                    break;
+                case 3:
+                    categoryText = "cafe";
+                    break;
+                case 4:
+                    categoryText = "clothes";
+                    break;
+                case 5:
+                    categoryText = "books";
+                    break;
+                case 6:
+                    categoryText = "electronics_store";
+                    break;
+                case 7:
+                    categoryText = "florist";
+                    break;
+
             }
+
+            db = FirebaseDatabase.getInstance().getReference("places").child("portsaid").child(categoryText);
+
+            db.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    PlaceModel places = dataSnapshot.getValue(PlaceModel.class);
+//                    System.out.print("erorrrrr : " + position);
+//                    System.out.print("erorrrrr : " + dataSnapshot);
+                    System.out.print("erorrrrr : " + places.getName());
+
+
+                    if (places != null) {
+                        results.add(places);
+                        progressBar.setVisibility(View.GONE);
+                        listText.setVisibility(View.GONE);
+                    } else {
+                        progressBar.setVisibility(View.GONE);
+                        listText.setText("مفيش محلات متوفرة حاليًا");
+                    }
+
+                    placesListAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+            System.out.println("erorrrrr : " + categoryText);
+
         });
 
 

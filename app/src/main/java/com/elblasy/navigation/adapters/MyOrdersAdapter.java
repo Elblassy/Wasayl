@@ -103,8 +103,8 @@ public class MyOrdersAdapter extends BaseAdapter {
         holder.delete.setOnClickListener(view -> {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle(context.getResources().getString(R.string.choose_driver));
-            builder.setMessage(context.getResources().getString(R.string.sure_to_choose));
+            builder.setTitle("حذف الطلب");
+            builder.setMessage("هل انت متأكد من حذف طلبك ؟");
             builder.setCancelable(true);
 
             builder.setPositiveButton(

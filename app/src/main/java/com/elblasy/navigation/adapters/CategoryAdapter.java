@@ -81,10 +81,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
                     break;
                 case 4:
-                    CATEGORY = "clothing_store";
+                    CATEGORY = "clothes";
                     break;
                 case 5:
-                    CATEGORY = "book_store";
+                    CATEGORY = "books";
                     break;
                 case 6:
                     CATEGORY = "electronics_store";
@@ -120,20 +120,4 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         }
     }
 
-//    final private Random mRandom = new Random(System.currentTimeMillis());
-//
-//    private int generateRandomColor() {
-//        // This is the base color which will be mixed with the generated one
-//        final int baseColor = Color.WHITE;
-//
-//        final int baseRed = Color.red(baseColor);
-//        final int baseGreen = Color.green(baseColor);
-//        final int baseBlue = Color.blue(baseColor);
-//
-//        final int red = (baseRed + mRandom.nextInt(256)) / 2;
-//        final int green = (baseGreen + mRandom.nextInt(256)) / 2;
-//        final int blue = (baseBlue + mRandom.nextInt(256)) / 2;
-//
-//        return Color.rgb(red, green, blue);
-//    }
 }

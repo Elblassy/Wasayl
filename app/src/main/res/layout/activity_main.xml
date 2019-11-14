@@ -63,19 +63,15 @@
             android:layout_gravity="center_vertical"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/signin"
-                android:layout_width="230dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:background="@drawable/sign_button"
-                android:elevation="10dp"
-                android:padding="8dp"
-                android:text="@string/submit"
-                android:textColor="#FFF"
-                android:textSize="30dp" />
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp"
+                android:text="@string/sign_in"
+                android:textColor="#000"
+                android:textSize="12pt" />
 
 
             <EditText
@@ -120,15 +116,21 @@
                 android:hint="@string/city"
                 android:padding="12dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
+
+            <Button
+                android:id="@+id/signin"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="12dp"
-                android:text="@string/sign_in"
-                android:textColor="#000"
-                android:textSize="12pt" />
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/sign_button"
+                android:elevation="10dp"
+                android:padding="8dp"
+                android:text="@string/submit"
+                android:textColor="#FFF"
+                android:textSize="30dp" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

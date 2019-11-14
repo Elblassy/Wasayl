@@ -13,23 +13,21 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.elblasy.navigation.R;
 import com.elblasy.navigation.activities.Order;
-import com.elblasy.navigation.models.Result;
+import com.elblasy.navigation.models.PlaceModel;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PlacesListAdapter extends RecyclerView.Adapter<PlacesListAdapter.ViewHolder> {
 
     private Context context;
-    private List<Result> results;
+    private List<PlaceModel> results;
     private int lastPosition = -1;
 
 
-    public PlacesListAdapter(Context context, List<Result> results) {
+    public PlacesListAdapter(Context context, List<PlaceModel> results) {
 
         this.context = context;
         this.results = results;
@@ -48,18 +46,12 @@ public class PlacesListAdapter extends RecyclerView.Adapter<PlacesListAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Result result = results.get(position);
+
+        PlaceModel result = results.get(position);
         holder.textViewName.setText(result.getName());
-        holder.textViewAddress.setText(result.getVicinity());
+        holder.textViewAddress.setText(result.getLocation());
 
         setAnimation(holder.cardView, position);
-
-
-        Glide.with(context)
-                .load(result.getIcon())
-                .skipMemoryCache(false)
-                .centerCrop()
-                .into(holder.icon);
 
         holder.cardView.setOnClickListener(v -> {
             Intent intent = new Intent(context, Order.class);
@@ -94,14 +86,12 @@ public class PlacesListAdapter extends RecyclerView.Adapter<PlacesListAdapter.Vi
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textViewName;
         private TextView textViewAddress;
-        private CircleImageView icon;
         private CardView cardView;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.textViewName);
             textViewAddress = itemView.findViewById(R.id.textViewAddress);
-            icon = itemView.findViewById(R.id.icon);
             cardView = itemView.findViewById(R.id.layout1);
 
         }

@@ -103,7 +103,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
         // load the store fragment by default
-        toolbar.setTitle("Home");
+        toolbar.setTitle(getResources().getString(R.string.title_activity_home));
         loadFragment(new HomeFragment());
 
 

@@ -59,7 +59,7 @@
 
     <!-- location in order -->
     <string name="from">عنوان الحاجة الى انت عايزها</string>
-    <string name="to">العنوان الى هنوصلك الحاجة ليه</string>
+    <string name="to">عنوانك</string>
     <string name="place_name">اسم المكان</string>
 
 

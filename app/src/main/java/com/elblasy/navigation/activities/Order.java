@@ -149,7 +149,7 @@ public class Order extends AppCompatActivity {
             ordersDatabase.child(placeNameEdit.getText().toString() + userKey).setValue(orderModel);
 
 
-            TOPIC = "/topics/" + SharedPref.getSessionValue("City") + "/" + kindOfOrder; //topic must match with what the receiver subscribed to
+            TOPIC = "/topics/" + SharedPref.getSessionValue("City").replaceAll("\\s+", "") + kindOfOrder; //topic must match with what the receiver subscribed to
             NOTIFICATION_TITLE = getResources().getString(R.string.notification_title);
             NOTIFICATION_MESSAGE = details.toString();
 
@@ -159,6 +159,7 @@ public class Order extends AppCompatActivity {
                 notifcationBody.put("title", NOTIFICATION_TITLE);
                 notifcationBody.put("message", NOTIFICATION_MESSAGE);
 
+                System.out.println("tobics " + TOPIC);
                 notification.put("to", TOPIC);
                 notification.put("data", notifcationBody);
             } catch (JSONException e) {
